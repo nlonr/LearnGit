@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             println("没有这个东西！")
         }else{
             println(gee.name)
+            println(gee.name)
         }
 
     }
@@ -73,8 +74,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     @SuppressLint("SetTextI18n")
     override fun onClick(v: View?) {
-        var xdpi = resources.displayMetrics.xdpi
-        var ydpi = resources.displayMetrics.ydpi
+        val xdpi = resources.displayMetrics.xdpi
+        val ydpi = resources.displayMetrics.ydpi
         tvOne.text = "宽度：$xdpi    高度：$ydpi"
 
     }
