@@ -49,6 +49,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }else{
             println(gee.name)
             println(gee.name)
+            println(gee.name)
+            println(gee.name)
+            println(gee.name)
         }
 
     }
