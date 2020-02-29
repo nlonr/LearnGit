@@ -48,10 +48,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             println("没有这个东西！")
         }else{
             println(gee.name)
-            println(gee.name)
-            println(gee.name)
-            println(gee.name)
-            println(gee.name)
         }
 
     }
