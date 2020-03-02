@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             println(gee.name)
         }
 
-    CacheUtils.setSpannableString(tvOne,"马化腾是我儿子",0,2)
+     CacheUtils.setSpannableString(tvOne,"马化腾是我儿子",1,3)
 
     }
 
