@@ -15,6 +15,7 @@ import com.liys.dialoglib.LDialog
 
 
 import entity.Greeter
+import utils.CacheUtils
 
 import java.sql.DriverManager.println
 
@@ -49,6 +50,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }else{
             println(gee.name)
         }
+
+    CacheUtils.setSpannableString(tvOne,"马化腾是我儿子",0,2)
 
     }
 
