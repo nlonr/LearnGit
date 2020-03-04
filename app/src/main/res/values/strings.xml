@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MyApp</string>
+    <string name="tv_one_text">没有设置底部约束，所以不会居于中间</string>
+    <string name="tv_two_text">上下均设置了约束，所以会居于中间</string>
+    <string name="desc">这是头像</string>
+
 </resources>

@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.liys.dialoglib.LDialog
@@ -16,6 +17,8 @@ import com.liys.dialoglib.LDialog
 
 import entity.Greeter
 import utils.CacheUtils
+import utils.ImageUtils
+import utils.getImageCacheAsyncTask
 
 import java.sql.DriverManager.println
 
@@ -25,6 +28,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var tvOne:TextView
    private lateinit var tvTwo:TextView
    private lateinit var tvThree:TextView
+    private lateinit var imTest:ImageView
     private val gee:Greeter  = Greeter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +40,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         tvOne = findViewById(R.id.tv1)
         tvTwo =  findViewById(R.id.tv2)
         tvThree = findViewById(R.id.tv3)
+        imTest = findViewById(R.id.img_test)
 
         gee.textViewToText(tvOne,"这是我的矩形")
         gee.textViewToText(tvTwo,"我不承认是你的")
@@ -51,8 +56,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             println(gee.name)
         }
 
-     CacheUtils.setSpannableString(tvOne,"马化腾是我儿子",1,3)
-
+        CacheUtils.setSpannableString(tvOne,"马化腾是我儿子",1,3)
+        getImageCacheAsyncTask(this,imTest)
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
