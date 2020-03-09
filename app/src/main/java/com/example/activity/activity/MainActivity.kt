@@ -1,68 +1,63 @@
-package com.example.myapplication
+package com.example.activity.activity
 
 import android.annotation.SuppressLint
-import android.database.Observable
-import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
-import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.liys.dialoglib.LDialog
+import com.example.activity.R
 
 
-import entity.Greeter
-import utils.CacheUtils
-import utils.ImageUtils
-import utils.getImageCacheAsyncTask
+import com.example.activity.entity.Greeter
+import com.example.activity.utils.CacheUtils
+import com.example.activity.utils.getImageCacheAsyncTask
 
 import java.sql.DriverManager.println
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
-    private lateinit var tvOne:TextView
-   private lateinit var tvTwo:TextView
-   private lateinit var tvThree:TextView
-    private lateinit var imTest:ImageView
-    private val gee:Greeter  = Greeter()
+    private lateinit var tvOne: TextView
+    private lateinit var tvTwo: TextView
+    private lateinit var tvThree: TextView
+    private lateinit var imgTest: ImageView
+    private val gee: Greeter = Greeter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         init()
     }
 
-    private fun init(){
+    private fun init() {
         tvOne = findViewById(R.id.tv1)
-        tvTwo =  findViewById(R.id.tv2)
+        tvTwo = findViewById(R.id.tv2)
         tvThree = findViewById(R.id.tv3)
-        imTest = findViewById(R.id.img_test)
+        imgTest = findViewById(R.id.img_test)
 
-        gee.textViewToText(tvOne,"这是我的矩形")
-        gee.textViewToText(tvTwo,"我不承认是你的")
-        gee.textViewToText(tvThree,"全都是我的")
+        gee.textViewToText(tvOne, "这是我的矩形")
+        gee.textViewToText(tvTwo, "我不承认是你的")
+        gee.textViewToText(tvThree, "全都是我的")
 
         tvOne.setOnClickListener(this)
 
         gee.name = "应该是这样的啊"
 
-        if(TextUtils.isEmpty(gee.name)){
+        if (TextUtils.isEmpty(gee.name)) {
             println("没有这个东西！")
-        }else{
+        } else {
             println(gee.name)
         }
 
-        CacheUtils.setSpannableString(tvOne,"马化腾是我儿子",1,3)
-        getImageCacheAsyncTask(this,imTest)
+        CacheUtils.setSpannableString(tvOne, "马化腾是我儿子", 1, 3)
+        getImageCacheAsyncTask(this, imgTest)
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
 
-        if(ev?.actionMasked == MotionEvent.ACTION_DOWN){
+        if (ev?.actionMasked == MotionEvent.ACTION_DOWN) {
             return true
         }
 
@@ -72,7 +67,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
 
-        if(event?.actionMasked == MotionEvent.ACTION_DOWN){
+        if (event?.actionMasked == MotionEvent.ACTION_DOWN) {
             return true
         }
 

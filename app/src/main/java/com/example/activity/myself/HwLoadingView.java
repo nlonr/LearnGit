@@ -1,4 +1,4 @@
-package myself;
+package com.example.activity.myself;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -14,7 +14,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.myapplication.R;
+import com.example.activity.R;
 
 public class HwLoadingView extends View {
 

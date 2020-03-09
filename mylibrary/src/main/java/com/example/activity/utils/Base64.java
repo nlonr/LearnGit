@@ -1,4 +1,4 @@
-package utils;
+package com.example.activity.utils;
 
 import java.io.UnsupportedEncodingException;
 

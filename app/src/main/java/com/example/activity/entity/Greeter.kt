@@ -1,4 +1,4 @@
-package entity
+package com.example.activity.entity
 
 import android.widget.TextView
 import java.sql.DriverManager.println

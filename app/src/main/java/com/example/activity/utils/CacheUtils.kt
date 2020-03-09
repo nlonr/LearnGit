@@ -1,4 +1,4 @@
-package utils
+package com.example.activity.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,8 +6,8 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.RelativeSizeSpan
 import android.widget.TextView
-import application.MyApp
-import com.example.myapplication.R
+import com.example.activity.application.MyApp
+import com.example.activity.R
 
 
 @SuppressLint("StaticFieldLeak")

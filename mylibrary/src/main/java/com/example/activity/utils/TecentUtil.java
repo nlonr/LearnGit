@@ -1,4 +1,4 @@
-package utils;
+package com.example.activity.utils;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
@@ -12,8 +12,8 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 public final class TecentUtil {
-    public static final String secretId = "";
-    public static final String secretKey = "";
+    private static final String secretId = "";
+    private static final String secretKey = "";
     private static final String CONTENT_CHARSET = "UTF-8";
     private static final String HMAC_ALGORITHM = "HmacSHA1";
     private TecentUtil(){
@@ -29,7 +29,7 @@ public final class TecentUtil {
             SecretKeySpec secretKey = new SecretKeySpec(secret.getBytes(CONTENT_CHARSET), mac1.getAlgorithm());
             mac1.init(secretKey);
             hash = mac1.doFinal(signStr.getBytes(CONTENT_CHARSET));
-            String sig = new String(Base64.encode(hash));
+            String sig = Base64.encode(hash);
             System.out.println("signValue--->" + sig);
             return sig;
         } catch (NoSuchAlgorithmException e) {
