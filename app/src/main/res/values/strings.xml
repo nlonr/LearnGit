@@ -2,6 +2,22 @@
     <string name="app_name">MyApp</string>
     <string name="tv_one_text">没有设置底部约束，所以不会居于中间</string>
     <string name="tv_two_text">上下均设置了约束，所以会居于中间</string>
-    <string name="desc">这是头像</string>
+    <string name="desc">这是图像</string>
+    <string name="tv_title">这是标题</string>
+    <string name="tv_content">这是内容</string>
+    <string name="tv_describe">下面播报最新资讯：本台武汉记者报道，截止到2020年3月12号凌晨，新冠肺炎重症患者已有5万余例，但庆幸的是现在病毒传播已得到有效控制</string>
+    <string name="tv_extra">此处可以添加额外消息</string>
+    <string name="tv_tab_one">首页</string>
+    <string name="tv_tab_two">你的啊</string>
+    <string name="tv_tab_three">他的啊</string>
+    <string name="tv_tab_four">我的</string>
+
+
+    <string name="et_name">请输入用户名</string>
+    <string name="et_check_code">请输入验证码</string>
+    <string name="btn_check_code">发送验证码</string>
+    <string name="btn_login">登  录</string>
+    <string name="tv_register">XXXX文字点击注册  注册</string>
+
 
 </resources>

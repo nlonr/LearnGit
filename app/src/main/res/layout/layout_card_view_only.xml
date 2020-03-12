@@ -9,33 +9,36 @@
 
     <androidx.cardview.widget.CardView
             android:id="@+id/card_view"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="100dp">
+            app:cardCornerRadius="@dimen/dp_4"
+            app:cardElevation="@dimen/dp_100">
 
-        <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp">
+        <include layout="@layout/layout_common_item"/>
 
-            <ImageView
-                    android:id="@+id/fruit_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+<!--        <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="10dp">-->
 
-                    android:contentDescription="@string/desc" />
+<!--            <ImageView-->
+<!--                    android:id="@+id/fruit_image"-->
+<!--                    android:layout_width="@dimen/dp_100"-->
+<!--                    android:layout_height="@dimen/dp_100"-->
+<!--                    android:background="@mipmap/ic_launcher"-->
+<!--                    android:contentDescription="@string/desc" />-->
 
-            <TextView
-                    android:id="@+id/fruit_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_toEndOf="@id/fruit_image" />
-        </RelativeLayout>
+<!--            <TextView-->
+<!--                    android:id="@+id/fruit_name"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@string/tv_describe"-->
+<!--                    android:layout_marginTop="@dimen/dp_10"-->
+<!--                    android:layout_toEndOf="@id/fruit_image" />-->
+<!--        </RelativeLayout>-->
 
     </androidx.cardview.widget.CardView>
 

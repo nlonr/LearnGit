@@ -17,6 +17,9 @@ import com.example.activity.utils.getImageCacheAsyncTask
 
 import java.sql.DriverManager.println
 
+/**
+ * px=dp*(dpi/160)
+ */
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
