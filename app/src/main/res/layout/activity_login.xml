@@ -37,7 +37,8 @@
             app:layout_constraintBottom_toTopOf="@+id/et_get_check_code"
             app:layout_constraintEnd_toEndOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="@+id/guideline1"
-            app:layout_constraintTop_toBottomOf="@+id/guideline2" />
+            app:layout_constraintTop_toBottomOf="@+id/guideline2"
+            />
 
     <EditText
             android:id="@+id/et_get_check_code"

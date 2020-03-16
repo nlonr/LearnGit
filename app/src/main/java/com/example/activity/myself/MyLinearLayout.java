@@ -22,7 +22,8 @@ public class MyLinearLayout extends LinearLayout {
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = MeasureSpec.getSize(heightMeasureSpec);
         int size = Math.min(width, height);
-        setMeasuredDimension(size, size);
+        super.onMeasure(MeasureSpec.makeMeasureSpec(size,MeasureSpec.EXACTLY),MeasureSpec.makeMeasureSpec(size,MeasureSpec.EXACTLY));
+
     }
 
 

@@ -27,9 +27,9 @@ class TestActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.activity_test_recycler_view)
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         //        瀑布流布局
-        val layoutManager1 = StaggeredGridLayoutManager(3, 1)
+//        val layoutManager1 = StaggeredGridLayoutManager(3, 1)
         //          网格布局
-        val layoutManager2 = GridLayoutManager(this, 2)
+//        val layoutManager2 = GridLayoutManager(this, 2)
         recyclerView?.layoutManager = layoutManager
 //        val adapter = FruitAdapter(this,mData,R.layout_common_item.dialog_common)
 //        recyclerView?.adapter = adapter

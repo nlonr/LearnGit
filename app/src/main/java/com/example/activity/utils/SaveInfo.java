@@ -47,8 +47,8 @@ public class SaveInfo {
     }
 
     //删除用户信息
-    public static boolean deleteUserInfo(Context context) {
-        SharedPreferences sp = context.getSharedPreferences("user_info", Context.MODE_PRIVATE);
+    public static boolean deleteUserInfo(Context context,String fileName) {
+        SharedPreferences sp = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
         return sp.edit().clear().commit();
     }
 

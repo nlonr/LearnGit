@@ -1,5 +1,6 @@
 package com.example.activity.activity
 
+
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
@@ -9,13 +10,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.activity.R
-
-
 import com.example.activity.entity.Greeter
 import com.example.activity.utils.CacheUtils
 import com.example.activity.utils.getImageCacheAsyncTask
-
 import java.sql.DriverManager.println
+
 
 /**
  * px=dp*(dpi/160)
@@ -56,6 +55,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         CacheUtils.setSpannableString(tvOne, "马化腾是我儿子", 1, 3)
         getImageCacheAsyncTask(this, imgTest)
+
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {

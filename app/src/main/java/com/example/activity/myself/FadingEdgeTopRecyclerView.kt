@@ -1,4 +1,4 @@
-package com.example.activity.entity
+package com.example.activity.myself
 
 import android.content.Context
 import android.util.AttributeSet
