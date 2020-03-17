@@ -17,9 +17,11 @@ import com.example.nlonr.adapter.FirstAdapter;
 import com.example.nlonr.entity.Goods;
 import com.example.nlonr.myself.BaseFragment;
 import com.example.nlonr.myself.BaseLazyLoadFragment;
+import com.example.nlonr.myself.MyDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class FirstFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
@@ -45,9 +47,9 @@ public class FirstFragment extends BaseFragment implements SwipeRefreshLayout.On
         //          网格布局
 //        val layoutManager2 = GridLayoutManager(this, 2)
         recycleV.setLayoutManager(layoutManager);
+        recycleV.addItemDecoration(new MyDecoration());
         FirstAdapter adapter = new FirstAdapter(getActivity(), list);
         recycleV.setAdapter(adapter);
-        Log.e("MyApp", "这是第一个fragment");
 
 
     }
@@ -70,8 +72,7 @@ public class FirstFragment extends BaseFragment implements SwipeRefreshLayout.On
     @Override
     public void onRefresh() {
         // 只加载一次数据，避免界面切换的时候，加载数据多次
-        if (recycleV.getAdapter() == null) {
-            Log.e("MyApp", "这是FirstFragment ---> onRefresh()");
+//        if (recycleV.getAdapter() == null) {
             swipeRefreshLayout.setRefreshing(true);
 
             handler.postDelayed(new Runnable() {
@@ -83,12 +84,12 @@ public class FirstFragment extends BaseFragment implements SwipeRefreshLayout.On
                     list.add(g5);
                     list.add(g6);
                     list.add(g7);
-
+                    Objects.requireNonNull(recycleV.getAdapter()).notifyDataSetChanged();
                     swipeRefreshLayout.setRefreshing(false);
                 }
             }, 1000);
 
-        }
+//        }
     }
 
 

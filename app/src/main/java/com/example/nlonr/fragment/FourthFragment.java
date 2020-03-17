@@ -14,8 +14,9 @@ import com.example.nlonr.myself.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class FourthFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener{
+public class FourthFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recycleV;
@@ -63,28 +64,21 @@ public class FourthFragment extends BaseFragment implements SwipeRefreshLayout.O
     @Override
     public void onRefresh() {
         // 只加载一次数据，避免界面切换的时候，加载数据多次
-        if (recycleV.getAdapter() == null) {
-            Log.d("MyApp", "这是FirstFragment ---> onRefresh()");
-            swipeRefreshLayout.setRefreshing(true);
-            new Thread() {
-                @Override
-                public void run() {
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            Goods g1 = new Goods(R.mipmap.ic_launcher, "1", "123", "1857", "");
-                            Goods g2 = new Goods(R.mipmap.ic_launcher, "2", "123", "1857", "");
-                            Goods g3 = new Goods(R.mipmap.ic_launcher, "3", "123", "1857", "");
-                            list.add(g1);
-                            list.add(g2);
-                            list.add(g3);
-
-                            swipeRefreshLayout.setRefreshing(false);
-                        }
-                    },1000);
-                }
-            }.start();
-        }
+        Log.d("MyApp", "这是FourthFragment ---> onRefresh()");
+        swipeRefreshLayout.setRefreshing(true);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Goods g1 = new Goods(R.mipmap.ic_launcher, "1", "123", "1857", "");
+                Goods g2 = new Goods(R.mipmap.ic_launcher, "2", "123", "1857", "");
+                Goods g3 = new Goods(R.mipmap.ic_launcher, "3", "123", "1857", "");
+                list.add(g1);
+                list.add(g2);
+                list.add(g3);
+                Objects.requireNonNull(recycleV.getAdapter()).notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        }, 1000);
     }
 
 }

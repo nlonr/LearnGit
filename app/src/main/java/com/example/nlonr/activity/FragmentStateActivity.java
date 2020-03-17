@@ -44,6 +44,13 @@ public class FragmentStateActivity extends AppCompatActivity {
         fm = getSupportFragmentManager();
         mTabLayout = findViewById(R.id.tab_layout);
         mViewPager2 = findViewById(R.id.vp);
+        mViewPager2.setOffscreenPageLimit(2);
+
+        mTabLayout.addTab(mTabLayout.newTab().setText("关注"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("推荐"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("抗击新肺炎"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("视频"));
+
         first = new FirstFragment();
         second = new SecondFragment();
         third = new ThirdFragment();
@@ -52,6 +59,7 @@ public class FragmentStateActivity extends AppCompatActivity {
         fragments.add(second);
         fragments.add(third);
         fragments.add(forth);
+
         initOthers();
     }
 
@@ -59,16 +67,14 @@ public class FragmentStateActivity extends AppCompatActivity {
         Log.d("MyApp", "这是fragmentActivity ---> initOthers()");
         mAdapter = new ViewPagerFragmentStateAdapter(this, fragments);
         mViewPager2.setAdapter(mAdapter);
-        mViewPager2.setOffscreenPageLimit(2);
-        mTabLayout.addTab(mTabLayout.newTab().setText("关注"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("推荐"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("抗击新肺炎"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("视频"));
+
+
         // 添加页签选中监听
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 mViewPager2.setCurrentItem(tab.getPosition());
+                FragmentUtils.showHideFragment(fm,fragments.get(tab.getPosition()));
             }
 
             @Override
@@ -86,6 +92,7 @@ public class FragmentStateActivity extends AppCompatActivity {
                 super.onPageSelected(position);
                 mTabLayout.setScrollPosition(position, 0, false);
                 Objects.requireNonNull(mTabLayout.getTabAt(position)).select();
+                FragmentUtils.showHideFragment(fm,fragments.get(position));
             }
         });
     }
@@ -93,9 +100,8 @@ public class FragmentStateActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-//        FragmentUtils.showHideFragment(fm,first);
         Log.d("MyApp", "这是fragmentActivity ---> onResume");
+
     }
 
 }

@@ -13,8 +13,9 @@ import com.example.nlonr.myself.BaseLazyLoadFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class SecondFragment extends BaseLazyLoadFragment implements SwipeRefreshLayout.OnRefreshListener{
+public class SecondFragment extends BaseLazyLoadFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recycleV;
@@ -39,7 +40,7 @@ public class SecondFragment extends BaseLazyLoadFragment implements SwipeRefresh
         //          网格布局
 //        val layoutManager2 = GridLayoutManager(this, 2)
         recycleV.setLayoutManager(layoutManager);
-        FirstAdapter adapter = new FirstAdapter(getActivity(),list);
+        FirstAdapter adapter = new FirstAdapter(getActivity(), list);
         recycleV.setAdapter(adapter);
 
     }
@@ -47,15 +48,14 @@ public class SecondFragment extends BaseLazyLoadFragment implements SwipeRefresh
     @Override
     protected void loadData() {
 
-            Goods g1 = new Goods(R.mipmap.ic_launcher,"1","123","1857","");
-            Goods g2 = new Goods(R.mipmap.ic_launcher,"2","123","1857","22222222222");
-            Goods g3 = new Goods(R.mipmap.ic_launcher,"3","123","1857","123123123123123123");
-            Goods g4 = new Goods(R.mipmap.ic_launcher,"4","123","1857","");
-            list.add(g1);
-            list.add(g2);
-            list.add(g3);
-            list.add(g4);
-
+        Goods g1 = new Goods(R.mipmap.ic_launcher, "1", "123", "1857", "");
+        Goods g2 = new Goods(R.mipmap.ic_launcher, "2", "123", "1857", "22222222222");
+        Goods g3 = new Goods(R.mipmap.ic_launcher, "3", "123", "1857", "123123123123123123");
+        Goods g4 = new Goods(R.mipmap.ic_launcher, "4", "123", "1857", "");
+        list.add(g1);
+        list.add(g2);
+        list.add(g3);
+        list.add(g4);
 
 
 //        onRefresh();
@@ -64,37 +64,22 @@ public class SecondFragment extends BaseLazyLoadFragment implements SwipeRefresh
     @Override
     public void onRefresh() {
         // 只加载一次数据，避免界面切换的时候，加载数据多次
-        if (recycleV.getAdapter() == null) {
-            swipeRefreshLayout.setRefreshing(true);
-            new Thread() {
-                @Override
-                public void run() {
-                    // 延迟1秒
-                    try {
-                        sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
+        swipeRefreshLayout.setRefreshing(true);
 
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Goods g1 = new Goods(R.mipmap.ic_launcher, "1", "123", "1857", "");
+                Goods g2 = new Goods(R.mipmap.ic_launcher, "2", "123", "1857", "");
+                Goods g3 = new Goods(R.mipmap.ic_launcher, "3", "123", "1857", "");
+                list.add(g1);
+                list.add(g2);
+                list.add(g3);
+                Objects.requireNonNull(recycleV.getAdapter()).notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        }, 1000);
 
-                                Goods g1 = new Goods(R.mipmap.ic_launcher,"1","123","1857","");
-                                Goods g2 = new Goods(R.mipmap.ic_launcher,"2","123","1857","");
-                                Goods g3 = new Goods(R.mipmap.ic_launcher,"3","123","1857","");
-                                Goods g4 = new Goods(R.mipmap.ic_launcher,"4","123","1857","");
-                                list.add(g1);
-                                list.add(g2);
-                                list.add(g3);
-                                list.add(g4);
-
-                            swipeRefreshLayout.setRefreshing(false);
-                        }
-                    });
-                }
-            }.start();
-        }
     }
 
 }
