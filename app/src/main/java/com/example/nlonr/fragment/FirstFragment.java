@@ -2,6 +2,8 @@ package com.example.nlonr.fragment;
 
 
 import android.os.Handler;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,6 +15,8 @@ import com.example.nlonr.adapter.FirstAdapter;
 import com.example.nlonr.entity.Goods;
 import com.example.nlonr.myself.BaseFragment;
 import com.example.nlonr.myself.MyDecoration;
+import com.example.nlonr.myself.ToastCompat;
+import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
@@ -41,16 +45,14 @@ public class FirstFragment extends BaseFragment {
     @Override
     protected void init() {
         smartRefresh = (SmartRefreshLayout) findViewById(R.id.smart_refresh);
-        smartRefresh.setRefreshHeader(new BezierRadarHeader(Objects.requireNonNull(getActivity())).setEnableHorizontalDrag(true));
+        smartRefresh.setReboundDuration(600);
+//        smartRefresh.setRefreshHeader(new MaterialHeader(Objects.requireNonNull(getActivity())).setShowBezierWave(true));
+//        smartRefresh.setRefreshHeader(new BezierRadarHeader(Objects.requireNonNull(getActivity())).setEnableHorizontalDrag(true));
         //设置 Footer 为 球脉冲 样式
-        smartRefresh.setRefreshFooter(new BallPulseFooter(getActivity()).setSpinnerStyle(SpinnerStyle.Scale));
-        smartRefresh.setFooterMaxDragRate(2);
+//        smartRefresh.setRefreshFooter(new BallPulseFooter(getActivity()).setSpinnerStyle(SpinnerStyle.Scale));
+//        smartRefresh.setFooterMaxDragRate(2);
         recycleV = (RecyclerView) findViewById(R.id.recycle);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        //        瀑布流布局
-//        val layoutManager1 = StaggeredGridLayoutManager(3, 1)
-        //          网格布局
-//        val layoutManager2 = GridLayoutManager(this, 2)
         recycleV.setLayoutManager(layoutManager);
         recycleV.addItemDecoration(new MyDecoration(Objects.requireNonNull(getActivity()), MyDecoration.VERTICAL_LIST));
         FirstAdapter adapter = new FirstAdapter(getActivity(), list);
@@ -74,36 +76,40 @@ public class FirstFragment extends BaseFragment {
 
     private void smartRefresh() {
         // 只加载一次数据，避免界面切换的时候，加载数据多次
-
         smartRefresh.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(final RefreshLayout refreshlayout) {
-                handler.postDelayed(new Runnable() {
+                handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        if(list.size()<10){
+                        if (list.size() < 15) {
                             loadMore();
                             smartRefresh.finishRefresh();
-                        }else{
-                            Toast.makeText(getActivity(), "刷新完成！", Toast.LENGTH_SHORT);
+                        } else {
+//                            Toast.makeText(getActivity(), "刷新完成！", Toast.LENGTH_SHORT);
+                            ToastCompat.showToast(getActivity(), "刷新完成", Toast.LENGTH_SHORT);
                             smartRefresh.finishRefresh();
                         }
                     }
-                }, 1000);
+                });
             }
         });
         smartRefresh.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                if(list.size()<10){
-                    loadMore();
-                    smartRefresh.finishLoadMore();
-                }else{
-                    Toast.makeText(getActivity(), "暂无可加载数据！", Toast.LENGTH_SHORT);
-                    smartRefresh.finishLoadMore();
-                }
-
-
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (list.size() < 15) {
+                            loadMore();
+                            smartRefresh.finishLoadMore();
+                        } else {
+//                            Toast.makeText(getActivity(), "暂无可加载数据！", Toast.LENGTH_SHORT);
+                            ToastCompat.showToast(getActivity(), "暂无可加载数据", Toast.LENGTH_SHORT);
+                            smartRefresh.finishLoadMore();
+                        }
+                    }
+                });
             }
         });
         smartRefresh.autoRefresh();

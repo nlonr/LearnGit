@@ -1,18 +1,23 @@
 package com.example.nlonr.fragment;
 
 import android.os.Handler;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.nlonr.R;
 import com.example.nlonr.adapter.FirstAdapter;
 import com.example.nlonr.entity.Goods;
 import com.example.nlonr.myself.BaseLazyLoadFragment;
 import com.example.nlonr.myself.MyDecoration;
+import com.example.nlonr.myself.ToastCompat;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +25,7 @@ import java.util.Objects;
 
 public class ThirdFragment extends BaseLazyLoadFragment  {
 
-    private SmartRefreshLayout swipeRefreshLayout;
+    private SmartRefreshLayout smartRefresh;
     private RecyclerView recycleV;
     private Handler handler = new Handler();
     private List<Goods> list = new ArrayList<>();
@@ -32,19 +37,17 @@ public class ThirdFragment extends BaseLazyLoadFragment  {
 
     @Override
     protected void init() {
-        swipeRefreshLayout = (SmartRefreshLayout) findViewById(R.id.smart_refresh);
+        smartRefresh = (SmartRefreshLayout) findViewById(R.id.smart_refresh);
         recycleV = (RecyclerView) findViewById(R.id.recycle);
-
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        //        瀑布流布局
+        smartRefresh.setReboundDuration(600);
+        //瀑布流布局
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
-        //          网格布局
-//        val layoutManager2 = GridLayoutManager(this, 2)
         recycleV.setLayoutManager(layoutManager);
         recycleV.addItemDecoration(new MyDecoration(Objects.requireNonNull(getActivity()), MyDecoration.VERTICAL_LIST));
         FirstAdapter adapter = new FirstAdapter(getActivity(), list);
         recycleV.setAdapter(adapter);
 
+        smartRefresh();
     }
 
     @Override
@@ -61,6 +64,58 @@ public class ThirdFragment extends BaseLazyLoadFragment  {
 
     }
 
+    private void smartRefresh() {
+        // 只加载一次数据，避免界面切换的时候，加载数据多次
+        smartRefresh.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(final RefreshLayout refreshlayout) {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (list.size() < 10) {
+                            loadMore();
+                            smartRefresh.finishRefresh();
+                        } else {
+//                            Toast.makeText(getActivity(), "刷新完成！", Toast.LENGTH_SHORT);
+                            ToastCompat.showToast(getActivity(), "刷新完成", Toast.LENGTH_SHORT);
+                            smartRefresh.finishRefresh();
+                        }
+                    }
+                });
+            }
+        });
+        smartRefresh.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (list.size() < 10) {
+                            loadMore();
+                            smartRefresh.finishLoadMore();
+                        } else {
+//                            Toast.makeText(getActivity(), "暂无可加载数据！", Toast.LENGTH_SHORT);
+                            ToastCompat.showToast(getActivity(), "暂无可加载数据", Toast.LENGTH_SHORT);
+                            smartRefresh.finishLoadMore();
+                        }
+                    }
+                });
+            }
+        });
+        smartRefresh.autoRefresh();
+
+    }
+
+    private void loadMore() {
+        Goods g5 = new Goods(R.mipmap.ic_launcher, "1", "123", "1857", "");
+        Goods g6 = new Goods(R.mipmap.ic_launcher, "2", "123", "1857", "");
+        Goods g7 = new Goods(R.mipmap.ic_launcher, "3", "123", "1857", "");
+        list.add(g5);
+        list.add(g6);
+        list.add(g7);
+        Objects.requireNonNull(recycleV.getAdapter()).notifyDataSetChanged();
+
+    }
 
 
 }

@@ -2,10 +2,12 @@ package com.example.nlonr.adapter;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,25 +31,26 @@ public class FirstAdapter extends RecyclerView.Adapter<FirstAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.common_item,parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.common_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         Goods g = list.get(position);
         holder.img.setImageResource(g.getImg());
         holder.tvTitle.setText(g.getTitle());
         holder.tvContent.setText(g.getContent());
-        if(!TextUtils.isEmpty(g.getDesc())){
+        if (!TextUtils.isEmpty(g.getDesc())) {
             holder.tvDesc.setText(g.getDesc());
-        }else{
+        } else {
             holder.tvDesc.setText("");
         }
 
-         if(!TextUtils.isEmpty(g.getExtra())){
+        if (!TextUtils.isEmpty(g.getExtra())) {
             holder.tvExtra.setText(g.getExtra());
-        }else{
+        } else {
             holder.tvExtra.setText("");
         }
 
@@ -60,7 +63,8 @@ public class FirstAdapter extends RecyclerView.Adapter<FirstAdapter.ViewHolder> 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView img;
-        TextView tvTitle,tvContent,tvDesc,tvExtra;
+        TextView tvTitle, tvContent, tvDesc, tvExtra;
+
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
