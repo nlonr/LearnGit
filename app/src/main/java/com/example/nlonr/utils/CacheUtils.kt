@@ -6,13 +6,13 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.RelativeSizeSpan
 import android.widget.TextView
-import com.example.nlonr.application.MyApp
 import com.example.nlonr.R
+import com.example.nlonr.application.MyApp
 
 @SuppressLint("StaticFieldLeak")
 object CacheUtils {
 
-    val context = MyApp.currentApplication()
+    val context = MyApp.getInstance()
     val SP = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
 
     fun save(key: String?, value: String?) {

@@ -4,20 +4,23 @@ import android.os.Handler;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.nlonr.R;
 import com.example.nlonr.adapter.FirstAdapter;
 import com.example.nlonr.entity.Goods;
 import com.example.nlonr.myself.BaseLazyLoadFragment;
+import com.example.nlonr.myself.MyDecoration;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ThirdFragment extends BaseLazyLoadFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class ThirdFragment extends BaseLazyLoadFragment  {
 
-    private SwipeRefreshLayout swipeRefreshLayout;
+    private SmartRefreshLayout swipeRefreshLayout;
     private RecyclerView recycleV;
     private Handler handler = new Handler();
     private List<Goods> list = new ArrayList<>();
@@ -29,17 +32,16 @@ public class ThirdFragment extends BaseLazyLoadFragment implements SwipeRefreshL
 
     @Override
     protected void init() {
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+        swipeRefreshLayout = (SmartRefreshLayout) findViewById(R.id.smart_refresh);
         recycleV = (RecyclerView) findViewById(R.id.recycle);
-        swipeRefreshLayout.setOnRefreshListener(this);
 
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         //        瀑布流布局
-//        val layoutManager1 = StaggeredGridLayoutManager(3, 1)
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
         //          网格布局
 //        val layoutManager2 = GridLayoutManager(this, 2)
         recycleV.setLayoutManager(layoutManager);
+        recycleV.addItemDecoration(new MyDecoration(Objects.requireNonNull(getActivity()), MyDecoration.VERTICAL_LIST));
         FirstAdapter adapter = new FirstAdapter(getActivity(), list);
         recycleV.setAdapter(adapter);
 
@@ -59,23 +61,6 @@ public class ThirdFragment extends BaseLazyLoadFragment implements SwipeRefreshL
 
     }
 
-    @Override
-    public void onRefresh() {
-        // 只加载一次数据，避免界面切换的时候，加载数据多次
-        swipeRefreshLayout.setRefreshing(true);
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Goods g1 = new Goods(R.mipmap.ic_launcher, "1", "123", "1857", "");
-                Goods g2 = new Goods(R.mipmap.ic_launcher, "2", "123", "1857", "");
-                Goods g3 = new Goods(R.mipmap.ic_launcher, "3", "123", "1857", "");
-                list.add(g1);
-                list.add(g2);
-                list.add(g3);
-                Objects.requireNonNull(recycleV.getAdapter()).notifyDataSetChanged();
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        }, 1000);
-    }
+
 
 }

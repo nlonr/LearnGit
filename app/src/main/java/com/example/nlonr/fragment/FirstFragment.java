@@ -1,32 +1,34 @@
 package com.example.nlonr.fragment;
 
 
-import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.view.View;
+import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.nlonr.R;
 import com.example.nlonr.adapter.FirstAdapter;
 import com.example.nlonr.entity.Goods;
 import com.example.nlonr.myself.BaseFragment;
-import com.example.nlonr.myself.BaseLazyLoadFragment;
 import com.example.nlonr.myself.MyDecoration;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 
-public class FirstFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class FirstFragment extends BaseFragment {
 
-    private SwipeRefreshLayout swipeRefreshLayout;
+    private SmartRefreshLayout smartRefresh;
     private RecyclerView recycleV;
     private Handler handler = new Handler();
     private List<Goods> list = new ArrayList<>();
@@ -38,20 +40,23 @@ public class FirstFragment extends BaseFragment implements SwipeRefreshLayout.On
 
     @Override
     protected void init() {
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+        smartRefresh = (SmartRefreshLayout) findViewById(R.id.smart_refresh);
+        smartRefresh.setRefreshHeader(new BezierRadarHeader(Objects.requireNonNull(getActivity())).setEnableHorizontalDrag(true));
+        //设置 Footer 为 球脉冲 样式
+        smartRefresh.setRefreshFooter(new BallPulseFooter(getActivity()).setSpinnerStyle(SpinnerStyle.Scale));
+        smartRefresh.setFooterMaxDragRate(2);
         recycleV = (RecyclerView) findViewById(R.id.recycle);
-        swipeRefreshLayout.setOnRefreshListener(this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         //        瀑布流布局
 //        val layoutManager1 = StaggeredGridLayoutManager(3, 1)
         //          网格布局
 //        val layoutManager2 = GridLayoutManager(this, 2)
         recycleV.setLayoutManager(layoutManager);
-        recycleV.addItemDecoration(new MyDecoration());
+        recycleV.addItemDecoration(new MyDecoration(Objects.requireNonNull(getActivity()), MyDecoration.VERTICAL_LIST));
         FirstAdapter adapter = new FirstAdapter(getActivity(), list);
         recycleV.setAdapter(adapter);
 
-
+        smartRefresh();
     }
 
     @Override
@@ -65,31 +70,55 @@ public class FirstFragment extends BaseFragment implements SwipeRefreshLayout.On
         list.add(g3);
         list.add(g4);
 
-
-//        onRefresh();
     }
 
-    @Override
-    public void onRefresh() {
+    private void smartRefresh() {
         // 只加载一次数据，避免界面切换的时候，加载数据多次
-//        if (recycleV.getAdapter() == null) {
-            swipeRefreshLayout.setRefreshing(true);
 
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Goods g5 = new Goods(R.mipmap.ic_launcher, "1", "123", "1857", "");
-                    Goods g6 = new Goods(R.mipmap.ic_launcher, "2", "123", "1857", "");
-                    Goods g7 = new Goods(R.mipmap.ic_launcher, "3", "123", "1857", "");
-                    list.add(g5);
-                    list.add(g6);
-                    list.add(g7);
-                    Objects.requireNonNull(recycleV.getAdapter()).notifyDataSetChanged();
-                    swipeRefreshLayout.setRefreshing(false);
+        smartRefresh.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(final RefreshLayout refreshlayout) {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(list.size()<10){
+                            loadMore();
+                            smartRefresh.finishRefresh();
+                        }else{
+                            Toast.makeText(getActivity(), "刷新完成！", Toast.LENGTH_SHORT);
+                            smartRefresh.finishRefresh();
+                        }
+                    }
+                }, 1000);
+            }
+        });
+        smartRefresh.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                if(list.size()<10){
+                    loadMore();
+                    smartRefresh.finishLoadMore();
+                }else{
+                    Toast.makeText(getActivity(), "暂无可加载数据！", Toast.LENGTH_SHORT);
+                    smartRefresh.finishLoadMore();
                 }
-            }, 1000);
 
-//        }
+
+            }
+        });
+        smartRefresh.autoRefresh();
+
+    }
+
+    private void loadMore() {
+        Goods g5 = new Goods(R.mipmap.ic_launcher, "1", "123", "1857", "");
+        Goods g6 = new Goods(R.mipmap.ic_launcher, "2", "123", "1857", "");
+        Goods g7 = new Goods(R.mipmap.ic_launcher, "3", "123", "1857", "");
+        list.add(g5);
+        list.add(g6);
+        list.add(g7);
+        Objects.requireNonNull(recycleV.getAdapter()).notifyDataSetChanged();
+
     }
 
 
