@@ -1,10 +1,10 @@
-package commoninterceptor;
+package com.example.nlonr.mylibrary.commoninterceptor;
 
 import android.util.Log;
 
 import java.io.IOException;
 
-import base.INetworkRequiredInfo;
+import com.example.nlonr.mylibrary.base.INetworkRequiredInfo;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;

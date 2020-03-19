@@ -1,4 +1,4 @@
-package observer;
+package com.example.nlonr.mylibrary.observer;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;

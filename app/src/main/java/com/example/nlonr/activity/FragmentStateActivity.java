@@ -9,7 +9,9 @@ import com.example.nlonr.fragment.FirstFragment;
 import com.example.nlonr.fragment.FourthFragment;
 import com.example.nlonr.fragment.SecondFragment;
 import com.example.nlonr.fragment.ThirdFragment;
-import com.example.nlonr.utils.FragmentUtils;
+import com.example.nlonr.myinterface.NetWorkInterface;
+import com.example.nlonr.myinterface.bean.NewsChannelsBean;
+import com.example.nlonr.mylibrary.FragmentUtils;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +22,9 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import com.example.nlonr.mylibrary.api.MyNetWorkApi;
+import com.example.nlonr.mylibrary.observer.BaseObserver;
 
 
 public class FragmentStateActivity extends AppCompatActivity {
@@ -101,6 +106,8 @@ public class FragmentStateActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.d("MyApp", "这是fragmentActivity ---> onResume");
+
+
 
     }
 

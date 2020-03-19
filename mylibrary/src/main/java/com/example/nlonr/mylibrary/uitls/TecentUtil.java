@@ -1,4 +1,6 @@
-package com.example.nlonr.utils;
+package com.example.nlonr.mylibrary.uitls;
+
+import com.example.nlonr.mylibrary.uitls.Base64;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;

@@ -1,4 +1,4 @@
-package com.example.nlonr.utils;
+package com.example.nlonr.mylibrary;
 
 import android.content.Context;
 import android.content.SharedPreferences;

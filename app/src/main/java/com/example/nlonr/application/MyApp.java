@@ -13,6 +13,8 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
+import com.example.nlonr.mylibrary.base.NetworkApi;
+
 public class MyApp extends Application {
 
     private static MyApp mInstance = null;
@@ -22,7 +24,7 @@ public class MyApp extends Application {
         SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
             @Override
             public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
-                layout.setPrimaryColorsId(R.color.blue_light, R.color.white);//全局设置主题颜色
+                layout.setPrimaryColorsId(R.color.blue_light, android.R.color.white);//全局设置主题颜色
                 return new ClassicsHeader(context);//.setTimeFormat(new DynamicTimeFormat("更新于 %s"));//指定为经典Header，默认是 贝塞尔雷达Header
             }
         });
@@ -40,6 +42,7 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
+        NetworkApi.init(new MyNetWork(mInstance));
     }
 
     public static MyApp getInstance() {

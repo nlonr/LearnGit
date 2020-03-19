@@ -1,4 +1,4 @@
-package environment
+package com.example.nlonr.mylibrary.environment
 
 interface IEnvironment {
 

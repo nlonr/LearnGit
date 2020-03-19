@@ -1,4 +1,5 @@
-package environment;
+package com.example.nlonr.mylibrary.environment;
+
 
 import android.app.Application;
 import android.content.SharedPreferences;
@@ -10,10 +11,9 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
-import com.example.mylibrary.R;
+import com.example.nlonr.mylibrary.R;
 
 public class EnvironmentActivity extends AppCompatActivity {
-
     public static final String NETWORK_ENVIRONMENT_PREF_KEY = "network_environment_type";
     private static String sCurrentNetworkEnvironment = "";
 

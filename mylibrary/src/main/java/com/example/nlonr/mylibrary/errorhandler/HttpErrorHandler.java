@@ -1,4 +1,4 @@
-package errorhandler;
+package com.example.nlonr.mylibrary.errorhandler;
 
 import io.reactivex.Observable;
 import io.reactivex.functions.Function;
