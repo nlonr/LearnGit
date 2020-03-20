@@ -12,6 +12,7 @@ import com.example.nlonr.fragment.ThirdFragment;
 import com.example.nlonr.myinterface.NetWorkInterface;
 import com.example.nlonr.myinterface.bean.NewsChannelsBean;
 import com.example.nlonr.mylibrary.FragmentUtils;
+import com.example.nlonr.presenter.MyPresenter;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -107,6 +108,7 @@ public class FragmentStateActivity extends AppCompatActivity {
         super.onResume();
         Log.d("MyApp", "这是fragmentActivity ---> onResume");
 
+        new MyPresenter().login("ll","123456");
 
 
     }

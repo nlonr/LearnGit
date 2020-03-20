@@ -1,28 +1,50 @@
 package com.example.nlonr.model;
 
-import com.example.nlonr.myinterface.NetWorkInterface;
+import com.example.nlonr.entity.Goods;
+import com.example.nlonr.entity.Login;
+import com.example.nlonr.myinterface.bean.BaseObjectBean;
 import com.example.nlonr.myinterface.bean.NewsChannelsBean;
 import com.example.nlonr.mylibrary.api.MyNetWorkApi;
 import com.example.nlonr.mylibrary.observer.BaseObserver;
+import com.example.nlonr.presenter.request.Request;
 
-public class Model {
+import java.util.List;
 
-    public void getNewsChannels(){
+import io.reactivex.Observable;
 
-        MyNetWorkApi.getService(NetWorkInterface .class)
-                .getNewsChannels()
-                .compose(MyNetWorkApi.getInstance().applySchedulers(new BaseObserver<NewsChannelsBean>(){
-                    @Override
-                    public void onSuccess(NewsChannelsBean newsChannelsBean) {
+public class Model implements Request {
 
-                    }
-
-                    @Override
-                    public void onFailure(Throwable e) {
-
-                    }
-                }));
-
+    @Override
+    public Observable<Login> login(String username, String password) {
+        return MyNetWorkApi.getService(Request.class).login(username, password);
+//                .compose(
+//                MyNetWorkApi.getInstance().applySchedulers(new BaseObserver<Login>() {
+//                    @Override
+//                    public void onSuccess(Login login) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Throwable e) {
+//
+//                    }
+//                }));
     }
 
+    @Override
+    public Observable<BaseObjectBean<List<Goods>>> getGoods(String username, String password) {
+        return null;
+    }
+
+    @Override
+    public Observable<NewsChannelsBean> getChannels(String username, String password) {
+        return null;
+    }
+
+
 }
+
+
+
+
+

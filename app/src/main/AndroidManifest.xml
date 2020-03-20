@@ -39,7 +39,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.nlonr.activity.FragmentStateActivity"
+        <activity
+                android:name="com.example.nlonr.activity.FragmentStateActivity"
                 android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,7 +49,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.nlonr.activity.TestActivity">
+        <activity android:name=".activity.TestActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+
+        </activity>
+
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
