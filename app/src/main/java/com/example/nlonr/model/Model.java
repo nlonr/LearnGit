@@ -17,28 +17,16 @@ public class Model implements Request {
     @Override
     public Observable<Login> login(String username, String password) {
         return MyNetWorkApi.getService(Request.class).login(username, password);
-//                .compose(
-//                MyNetWorkApi.getInstance().applySchedulers(new BaseObserver<Login>() {
-//                    @Override
-//                    public void onSuccess(Login login) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Throwable e) {
-//
-//                    }
-//                }));
     }
 
     @Override
     public Observable<BaseObjectBean<List<Goods>>> getGoods(String username, String password) {
-        return null;
+        return MyNetWorkApi.getService(Request.class).getGoods(username, password);
     }
 
     @Override
     public Observable<NewsChannelsBean> getChannels(String username, String password) {
-        return null;
+        return MyNetWorkApi.getService(Request.class).getChannels(username, password);
     }
 
 
