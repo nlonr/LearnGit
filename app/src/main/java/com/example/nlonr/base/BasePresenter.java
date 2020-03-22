@@ -3,7 +3,6 @@ package com.example.nlonr.base;
 public class BasePresenter<V extends BaseView> {
     protected V mView;
 
-
     /**
      * 绑定view，一般在初始化中调用该方法
      *

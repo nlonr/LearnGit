@@ -1,7 +1,5 @@
 package com.example.nlonr.base;
 
-import com.uber.autodispose.AutoDisposeConverter;
-
 public interface BaseView {
         /**
          * 显示加载中

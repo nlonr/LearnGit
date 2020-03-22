@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
-
 import java.lang.reflect.Field;
 
 public class ToastCompat {
@@ -62,6 +61,5 @@ public class ToastCompat {
             impl.handleMessage(msg);//需要委托给原Handler执行
         }
     }
-
 
 }

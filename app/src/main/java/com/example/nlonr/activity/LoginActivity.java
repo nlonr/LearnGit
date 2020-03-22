@@ -5,16 +5,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
+
 import com.example.nlonr.R;
 import com.example.nlonr.base.BaseActivity;
-import com.example.nlonr.contract.MainContract;
+import com.example.nlonr.contract.LoginContract;
 import com.example.nlonr.entity.Login;
 import com.example.nlonr.myself.ToastCompat;
+import com.example.nlonr.presenter.LoginPresenter;
 
-public class LoginActivity extends BaseActivity implements MainContract.View {
+public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     private Button btnLogin;
+    private LoginPresenter mPresenter = new LoginPresenter();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,6 +27,7 @@ public class LoginActivity extends BaseActivity implements MainContract.View {
         //设置是否显示状态栏
         setShowStatusBar(true);
         super.onCreate(savedInstanceState);
+        mPresenter.attachView(this);
     }
 
     @Override
@@ -40,7 +45,7 @@ public class LoginActivity extends BaseActivity implements MainContract.View {
     @Override
     protected void initData() {
         ImageView img = new ImageView(this);
-        getCacheFile("http:\\www.baidu.com\\0152000891000212.jpg",img);
+        getCacheFile("http:\\www.baidu.com\\0152000891000212.jpg", img);
     }
 
 
@@ -49,7 +54,7 @@ public class LoginActivity extends BaseActivity implements MainContract.View {
         btnLogin.setOnClickListener(new OnSingleClickListener() {
             @Override
             public void onSingleClick(View view) {
-                getPresenter().login("ll", "123456");
+                mPresenter.login("ll", "123456");
             }
         });
     }
@@ -74,6 +79,13 @@ public class LoginActivity extends BaseActivity implements MainContract.View {
         if (bean.getStatus().equals("1")) {
             ToastCompat.showToast(this, "登陆成功", Toast.LENGTH_SHORT);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.detachView();
+        mPresenter = null;
     }
 
 

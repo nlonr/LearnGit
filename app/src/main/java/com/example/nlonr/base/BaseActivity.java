@@ -2,7 +2,6 @@ package com.example.nlonr.base;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Looper;
@@ -22,15 +21,12 @@ import com.bumptech.glide.load.engine.cache.SafeKeyGenerator;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.signature.EmptySignature;
 import com.example.nlonr.application.ActivityCollector;
-import com.example.nlonr.contract.MainContract;
-import com.example.nlonr.presenter.MyPresenter;
 import com.example.nlonr.utils.DataCacheKey;
 
 import java.io.File;
 import java.io.IOException;
 
-public abstract class BaseActivity extends AppCompatActivity implements MainContract.View {
-
+public abstract class BaseActivity extends AppCompatActivity {
 
     protected final String TAG = this.getClass().getSimpleName();
     //是否显示标题栏
@@ -40,7 +36,6 @@ public abstract class BaseActivity extends AppCompatActivity implements MainCont
     //封装Toast对象
     private static Toast toast;
     public Context context;
-    private MyPresenter mPresenter = new MyPresenter();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,7 +43,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MainCont
         context = this;
         //activity管理
         ActivityCollector.addActivity(this);
-        mPresenter.attachView(this);
+
     }
 
     @Override
@@ -107,10 +102,6 @@ public abstract class BaseActivity extends AppCompatActivity implements MainCont
      */
     public void setShowStatusBar(boolean showStatusBar) {
         isShowStatusBar = showStatusBar;
-    }
-
-    public MyPresenter getPresenter(){
-        return mPresenter;
     }
 
     /**
@@ -219,8 +210,6 @@ public abstract class BaseActivity extends AppCompatActivity implements MainCont
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mPresenter.detachView();
-        mPresenter = null;
         //activity管理
         ActivityCollector.removeActivity(this);
     }

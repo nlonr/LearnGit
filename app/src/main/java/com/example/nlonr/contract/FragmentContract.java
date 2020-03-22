@@ -1,9 +1,11 @@
 package com.example.nlonr.contract;
 
 import com.example.nlonr.base.BaseView;
-import com.example.nlonr.entity.Login;
+import com.example.nlonr.entity.Goods;
 
-public interface MainContract {
+import java.util.List;
+
+public interface FragmentContract{
 
     interface View extends BaseView {
         @Override
@@ -15,16 +17,18 @@ public interface MainContract {
         @Override
         void onError(Throwable throwable);
 
-        void onSuccess(Login bean);
+        void onSuccess(List<Goods> bean);
     }
 
-    interface Presenter {
+    interface GetGoods{
         /**
-         * 登陆
+         * 获取列表
          * @param username
          * @param password
+         * @return
          */
-        void login(String username, String password);
-
+        List<Goods> getGoods(String username, String password);
     }
+
+
 }
