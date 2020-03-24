@@ -45,13 +45,13 @@ public class FirstAdapter extends RecyclerView.Adapter<FirstAdapter.ViewHolder> 
         if (!TextUtils.isEmpty(g.getDesc())) {
             holder.tvDesc.setText(g.getDesc());
         } else {
-            holder.tvDesc.setText("");
+            holder.tvDesc.setVisibility(View.GONE);
         }
 
         if (!TextUtils.isEmpty(g.getExtra())) {
             holder.tvExtra.setText(g.getExtra());
         } else {
-            holder.tvExtra.setText("");
+            holder.tvExtra.setVisibility(View.GONE);
         }
 
     }

@@ -91,7 +91,7 @@ public class FirstFragment extends BaseFragment {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        if (list.size() < 15) {
+                        if (list.size() < 12) {
                             loadMore();
                             smartRefresh.finishLoadMore();
                         } else {
@@ -103,7 +103,7 @@ public class FirstFragment extends BaseFragment {
                 });
             }
         });
-        smartRefresh.autoRefresh();
+//        smartRefresh.autoRefresh();
 
     }
 

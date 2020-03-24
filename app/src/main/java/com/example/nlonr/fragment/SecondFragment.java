@@ -102,7 +102,6 @@ public class SecondFragment extends BaseLazyLoadFragment {
                 });
             }
         });
-        smartRefresh.autoRefresh();
 
     }
 

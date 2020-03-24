@@ -2,6 +2,8 @@ package com.example.nlonr.activity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.nlonr.R;
 import com.example.nlonr.adapter.ViewPagerFragmentStateAdapter;
@@ -17,6 +19,7 @@ import com.example.nlonr.presenter.FragmentStatePresenter;
 import com.example.nlonr.presenter.LoginPresenter;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
@@ -39,9 +42,9 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //设置是否显示标题栏
-        setShowTitle(true);
+//        setShowTitle(true);
         //设置是否显示状态栏
-        setShowStatusBar(true);
+//        setShowStatusBar(true);
         super.onCreate(savedInstanceState);
         mPresenter.attachView(this);
     }
@@ -94,12 +97,31 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                View view = tab.getCustomView();
+
+                if (view instanceof TextView) {
+                    // 改变 tab 未选择状态下的字体大小
+                    ((TextView) view).setTextSize(18);
+                    // 改变 tab 未选择状态下的字体颜色
+                    ((TextView) view).setTextColor(ContextCompat.getColor(FragmentStateActivity.this, R.color.black));
+                }
+
                 mViewPager2.setCurrentItem(tab.getPosition());
                 FragmentUtils.showHideFragment(fm, fragments.get(tab.getPosition()));
+
+
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
+                View view = tab.getCustomView();
+                if (view instanceof TextView) {
+                    // 改变 tab 未选择状态下的字体大小
+                    ((TextView) view).setTextSize(16);
+                    // 改变 tab 未选择状态下的字体颜色
+                    ((TextView) view).setTextColor(ContextCompat.getColor(FragmentStateActivity.this, R.color.black));
+                }
+
             }
 
             @Override
@@ -123,7 +145,7 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
         super.onResume();
         Log.d("MyApp", "这是fragmentActivity ---> onResume");
 
-        new FragmentStatePresenter().getGoods("ll", "123456");
+//        new FragmentStatePresenter().getGoods("ll", "123456");
 
 
     }

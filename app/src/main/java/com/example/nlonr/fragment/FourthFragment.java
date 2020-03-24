@@ -106,7 +106,6 @@ public class FourthFragment extends BaseFragment  {
                 });
             }
         });
-        smartRefresh.autoRefresh();
 
     }
 
