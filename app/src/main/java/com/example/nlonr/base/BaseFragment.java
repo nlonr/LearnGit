@@ -1,4 +1,4 @@
-package com.example.nlonr.myself;
+package com.example.nlonr.base;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

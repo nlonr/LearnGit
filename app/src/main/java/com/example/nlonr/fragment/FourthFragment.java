@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.nlonr.R;
 import com.example.nlonr.adapter.FirstAdapter;
 import com.example.nlonr.entity.Goods;
-import com.example.nlonr.myself.BaseFragment;
+import com.example.nlonr.base.BaseFragment;
 import com.example.nlonr.myself.MyDecoration;
 import com.example.nlonr.myself.ToastCompat;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;

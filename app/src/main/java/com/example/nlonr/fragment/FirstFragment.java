@@ -1,29 +1,24 @@
 package com.example.nlonr.fragment;
 
-
 import android.os.Handler;
 import android.view.View;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.nlonr.R;
 import com.example.nlonr.adapter.FirstAdapter;
 import com.example.nlonr.entity.Goods;
-import com.example.nlonr.myself.BaseFragment;
+import com.example.nlonr.base.BaseFragment;
 import com.example.nlonr.myself.MyDecoration;
 import com.example.nlonr.myself.ToastCompat;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 
 public class FirstFragment extends BaseFragment {
 
@@ -41,11 +36,6 @@ public class FirstFragment extends BaseFragment {
     protected void init() {
         smartRefresh = (SmartRefreshLayout) findViewById(R.id.smart_refresh);
         smartRefresh.setReboundDuration(600);
-//        smartRefresh.setRefreshHeader(new MaterialHeader(Objects.requireNonNull(getActivity())).setShowBezierWave(true));
-//        smartRefresh.setRefreshHeader(new BezierRadarHeader(Objects.requireNonNull(getActivity())).setEnableHorizontalDrag(true));
-        //设置 Footer 为 球脉冲 样式
-//        smartRefresh.setRefreshFooter(new BallPulseFooter(getActivity()).setSpinnerStyle(SpinnerStyle.Scale));
-//        smartRefresh.setFooterMaxDragRate(2);
         recycleV = (RecyclerView) findViewById(R.id.recycle);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recycleV.setLayoutManager(layoutManager);
@@ -96,6 +86,7 @@ public class FirstFragment extends BaseFragment {
                 });
             }
         });
+
         smartRefresh.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
@@ -114,6 +105,7 @@ public class FirstFragment extends BaseFragment {
                 });
             }
         });
+
 //        smartRefresh.autoRefresh();
 
     }

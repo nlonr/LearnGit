@@ -1,8 +1,10 @@
-package com.example.nlonr.myself;
+package com.example.nlonr.base;
 
 import android.os.Bundle;
 import android.view.View;
 import androidx.annotation.Nullable;
+
+import com.example.nlonr.base.BaseFragment;
 
 public abstract class BaseLazyLoadFragment extends BaseFragment {
     /**

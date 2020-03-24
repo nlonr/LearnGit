@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.nlonr.R;
 import com.example.nlonr.adapter.FirstAdapter;
 import com.example.nlonr.entity.Goods;
-import com.example.nlonr.myself.BaseLazyLoadFragment;
+import com.example.nlonr.base.BaseLazyLoadFragment;
 import com.example.nlonr.myself.MyDecoration;
 import com.example.nlonr.myself.ToastCompat;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
