@@ -14,9 +14,8 @@ import com.example.nlonr.fragment.FirstFragment;
 import com.example.nlonr.fragment.FourthFragment;
 import com.example.nlonr.fragment.SecondFragment;
 import com.example.nlonr.fragment.ThirdFragment;
-import com.example.nlonr.mylibrary.FragmentUtils;
+import com.example.nlonr.utils.FragmentUtils;
 import com.example.nlonr.presenter.FragmentStatePresenter;
-import com.example.nlonr.presenter.LoginPresenter;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.core.content.ContextCompat;

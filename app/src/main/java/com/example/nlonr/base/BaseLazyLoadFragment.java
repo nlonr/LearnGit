@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 import androidx.annotation.Nullable;
 
-import com.example.nlonr.base.BaseFragment;
-
 public abstract class BaseLazyLoadFragment extends BaseFragment {
     /**
      * 是否已经初始化结束

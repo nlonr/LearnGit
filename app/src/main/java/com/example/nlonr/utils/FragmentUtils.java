@@ -1,10 +1,9 @@
-package com.example.nlonr.mylibrary;
+package com.example.nlonr.utils;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Lifecycle;
-
 import java.util.List;
 
 public class FragmentUtils {
@@ -56,6 +55,5 @@ public class FragmentUtils {
         }
         ft.commit();
     }
-
 
 }

@@ -1,4 +1,4 @@
-package com.example.nlonr.myinterface.bean;
+package com.example.nlonr.bean;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

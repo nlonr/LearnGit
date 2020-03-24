@@ -3,7 +3,7 @@ package com.example.nlonr.presenter;
 import com.example.nlonr.base.BasePresenter;
 import com.example.nlonr.contract.FragmentContract;
 import com.example.nlonr.entity.Goods;
-import com.example.nlonr.myinterface.bean.BaseObjectBean;
+import com.example.nlonr.bean.BaseArrayBean;
 import com.example.nlonr.mylibrary.api.MyNetWorkApi;
 import com.example.nlonr.mylibrary.observer.BaseObserver;
 import com.example.nlonr.presenter.request.Request;
@@ -17,10 +17,10 @@ public class FragmentStatePresenter extends BasePresenter<FragmentContract.View>
 
     @Override
     public List<Goods> getGoods(String username, String password) {
-        mRequest.getGoods(username,password).compose(MyNetWorkApi.getInstance().applySchedulers(new BaseObserver<BaseObjectBean<List<Goods>>>() {
+        mRequest.getGoods(username,password).compose(MyNetWorkApi.getInstance().applySchedulers(new BaseObserver<BaseArrayBean<List<Goods>>>() {
 
             @Override
-            public void onSuccess(BaseObjectBean<List<Goods>> listBaseObjectBean) {
+            public void onSuccess(BaseArrayBean<List<Goods>> listBaseObjectBean) {
 
             }
 

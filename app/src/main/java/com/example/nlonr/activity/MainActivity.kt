@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.nlonr.R
 import com.example.nlonr.entity.Greeter
 import com.example.nlonr.mylibrary.CacheUtils
-import com.example.nlonr.mylibrary.getImageCacheAsyncTask
 import java.sql.DriverManager.println
 
 /**

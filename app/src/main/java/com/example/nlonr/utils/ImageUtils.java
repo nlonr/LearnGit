@@ -190,7 +190,6 @@ public class ImageUtils {
 
     /**
      * 质量压缩方法
-     *
      * @param image
      * @return
      */

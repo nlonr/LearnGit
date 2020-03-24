@@ -2,10 +2,9 @@ package com.example.nlonr.model;
 
 import com.example.nlonr.entity.Goods;
 import com.example.nlonr.entity.Login;
-import com.example.nlonr.myinterface.bean.BaseObjectBean;
-import com.example.nlonr.myinterface.bean.NewsChannelsBean;
+import com.example.nlonr.bean.BaseArrayBean;
+import com.example.nlonr.bean.NewsChannelsBean;
 import com.example.nlonr.mylibrary.api.MyNetWorkApi;
-import com.example.nlonr.mylibrary.observer.BaseObserver;
 import com.example.nlonr.presenter.request.Request;
 
 import java.util.List;
@@ -20,7 +19,7 @@ public class Model implements Request {
     }
 
     @Override
-    public Observable<BaseObjectBean<List<Goods>>> getGoods(String username, String password) {
+    public Observable<BaseArrayBean<List<Goods>>> getGoods(String username, String password) {
         return MyNetWorkApi.getService(Request.class).getGoods(username, password);
     }
 

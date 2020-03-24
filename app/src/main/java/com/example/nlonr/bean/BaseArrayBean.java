@@ -1,17 +1,16 @@
-package com.example.nlonr.myinterface.bean;
-/**
- *
- * Description：对象
- */
-public class BaseObjectBean<T> {
+package com.example.nlonr.bean;
+
+import java.util.List;
+
+public class BaseArrayBean<T> {
     /**
      * status : 1
      * msg : 获取成功
-     * result : {} 对象
+     * result : [] 数组
      */
     private int errorCode;
     private String errorMsg;
-    private T result;
+    private List<T> result;
 
     public int getErrorCode() {
         return errorCode;
@@ -29,13 +28,12 @@ public class BaseObjectBean<T> {
         this.errorMsg = errorMsg;
     }
 
-    public T getResult() {
+    public List<T> getResult() {
         return result;
     }
 
-    public void setResult(T result) {
+    public void setResult(List<T> result) {
         this.result = result;
     }
-
 
 }
