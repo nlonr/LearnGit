@@ -22,10 +22,19 @@ public class FirstAdapter extends RecyclerView.Adapter<FirstAdapter.ViewHolder> 
 
     private Context mContext;
     private List<Goods> list;
+    private OnItemClickListener mItemClick;
 
     public FirstAdapter(Context mContext, List<Goods> list) {
         this.mContext = mContext;
         this.list = list;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mItemClick = listener;
     }
 
     @NonNull
@@ -36,7 +45,7 @@ public class FirstAdapter extends RecyclerView.Adapter<FirstAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
         Goods g = list.get(position);
         holder.img.setImageResource(g.getImg());
@@ -53,6 +62,15 @@ public class FirstAdapter extends RecyclerView.Adapter<FirstAdapter.ViewHolder> 
         } else {
             holder.tvExtra.setVisibility(View.GONE);
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mItemClick!=null){
+                    mItemClick.onItemClick(v,position);
+                }
+            }
+        });
 
     }
 
@@ -73,6 +91,7 @@ public class FirstAdapter extends RecyclerView.Adapter<FirstAdapter.ViewHolder> 
             tvContent = itemView.findViewById(R.id.tv_content);
             tvDesc = itemView.findViewById(R.id.tv_describe);
             tvExtra = itemView.findViewById(R.id.tv_extra);
+
         }
 
     }

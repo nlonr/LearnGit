@@ -4,7 +4,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-
     <ImageView
             android:id="@+id/img_icon"
             android:layout_width="@dimen/dp_100"
