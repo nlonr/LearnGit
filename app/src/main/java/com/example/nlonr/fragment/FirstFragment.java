@@ -1,6 +1,8 @@
 package com.example.nlonr.fragment;
 
+import android.content.res.Resources;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -16,6 +18,8 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -114,6 +118,7 @@ public class FirstFragment extends BaseFragment {
         Goods g5 = new Goods(R.mipmap.ic_launcher, "1", "123", "1857", "");
         Goods g6 = new Goods(R.mipmap.ic_launcher, "2", "123", "1857", "");
         Goods g7 = new Goods(R.mipmap.ic_launcher, "3", "123", "1857", "");
+        Log.d("MyApp", "这是FirstFragment ---> " );
         list.add(g5);
         list.add(g6);
         list.add(g7);
