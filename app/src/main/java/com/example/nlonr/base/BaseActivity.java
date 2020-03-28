@@ -61,7 +61,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             initView();
             //设置数据
             initData();
-            
+
             isFirst = false;
         }
 
