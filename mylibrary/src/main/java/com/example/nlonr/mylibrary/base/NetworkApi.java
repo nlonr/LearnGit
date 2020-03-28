@@ -6,7 +6,6 @@ import com.example.nlonr.mylibrary.environment.EnvironmentActivity;
 import com.example.nlonr.mylibrary.commoninterceptor.CommonRequestInterceptor;
 import com.example.nlonr.mylibrary.commoninterceptor.CommonResponseInterceptor;
 import com.example.nlonr.mylibrary.errorhandler.HttpErrorHandler;
-
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;

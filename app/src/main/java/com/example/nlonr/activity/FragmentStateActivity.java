@@ -1,12 +1,13 @@
 package com.example.nlonr.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
 import com.example.nlonr.R;
 import com.example.nlonr.adapter.ViewPagerFragmentStateAdapter;
+import com.example.nlonr.application.ActivityCollector;
 import com.example.nlonr.base.BaseActivity;
 import com.example.nlonr.contract.FragmentContract;
 import com.example.nlonr.entity.Goods;
@@ -17,12 +18,10 @@ import com.example.nlonr.fragment.ThirdFragment;
 import com.example.nlonr.utils.FragmentUtils;
 import com.example.nlonr.presenter.FragmentStatePresenter;
 import com.google.android.material.tabs.TabLayout;
-
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -37,6 +36,7 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
     private ViewPagerFragmentStateAdapter mAdapter;
     private FragmentManager fm;
     private FragmentStatePresenter mPresenter = new FragmentStatePresenter();
+    private int show;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +44,11 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
 //        setShowTitle(true);
         //设置是否显示状态栏
 //        setShowStatusBar(true);
+
         super.onCreate(savedInstanceState);
+
         mPresenter.attachView(this);
-    }
+}
 
     @Override
     protected int initLayout() {
@@ -83,21 +85,20 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
         fragments.add(third);
         fragments.add(forth);
 
+        mAdapter = new ViewPagerFragmentStateAdapter(this, fragments);
+        mViewPager2.setAdapter(mAdapter);
+
         initOthers();
     }
 
     private void initOthers() {
-        Log.d("MyApp", "这是fragmentActivity ---> initOthers()");
-        mAdapter = new ViewPagerFragmentStateAdapter(this, fragments);
-        mViewPager2.setAdapter(mAdapter);
-
-
         // 添加页签选中监听
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 View view = tab.getCustomView();
-
+                show = tab.getPosition();
+                Log.d("MyApp", "mTabLayout : " + show);
                 if (view instanceof TextView) {
                     // 改变 tab 未选择状态下的字体大小
                     ((TextView) view).setTextSize(18);
@@ -107,8 +108,6 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
 
                 mViewPager2.setCurrentItem(tab.getPosition());
                 FragmentUtils.showHideFragment(fm, fragments.get(tab.getPosition()));
-
-
             }
 
             @Override
@@ -120,7 +119,6 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
                     // 改变 tab 未选择状态下的字体颜色
                     ((TextView) view).setTextColor(ContextCompat.getColor(FragmentStateActivity.this, R.color.black));
                 }
-
             }
 
             @Override
@@ -129,25 +127,49 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
         });
         // 注册页面变化的回调接口
         mViewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+//                Log.d("MyApp", "这是什么值：" + position + "   " + positionOffset + "   " + positionOffsetPixels);
+//                int i = fragments.size() - 1;
+//                if (positionOffsetPixels > 400) {
+//                    onPageSelected(position + 1);
+//                }
+//
+//                if (position == i) {
+//                    i--;
+//                    onPageSelected(position - 1);
+//                    if (i == 0) {
+//                        return;
+//                    }
+//                }
+//            }
+
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+                show = position;
+                Log.d("MyApp", "mViewPager2 : " + position);
                 mTabLayout.setScrollPosition(position, 0, false);
                 Objects.requireNonNull(mTabLayout.getTabAt(position)).select();
                 FragmentUtils.showHideFragment(fm, fragments.get(position));
             }
         });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("MyApp", "这是fragmentActivity ---> onResume");
-
-//        new FragmentStatePresenter().getGoods("ll", "123456");
 
 
     }
+
+    //    @Override
+//    protected void onResume() {
+//        super.onResume();
+
+
+//        ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+//        assert activityManager != null;
+//        int memorySize = activityManager.getMemoryClass();
+//        Log.d("MyApp", "占用 " + memorySize + " 内存");
+
+//    }
 
     @Override
     public void showLoading() {
@@ -174,8 +196,11 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
         super.onDestroy();
         mPresenter.detachView();
         mPresenter = null;
-
+        fragments = null;
+        ActivityCollector.removeActivity(this);
+        Log.d("MyApp", "------ onDestroy ------");
     }
+
 }
 
 

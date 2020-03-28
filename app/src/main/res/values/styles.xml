@@ -1,6 +1,6 @@
 <resources>
 
-    <!-- Base com.example.com.example.com.example.activity.activity.com.example.activity.activity.application theme. -->
+    <!-- Base com.example.activity.activity.application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:listDivider">@drawable/decoration</item>

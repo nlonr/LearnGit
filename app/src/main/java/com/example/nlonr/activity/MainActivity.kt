@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         CacheUtils.setSpannableString(tvOne, "马化腾是我儿子", 1, 3)
-        getImageCacheAsyncTask(this, imgTest)
 
     }
 

@@ -2,20 +2,18 @@ package com.example.nlonr.base;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.bumptech.glide.disklrucache.DiskLruCache;
 import com.bumptech.glide.load.engine.cache.DiskCache;
 import com.bumptech.glide.load.engine.cache.SafeKeyGenerator;
@@ -23,19 +21,18 @@ import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.signature.EmptySignature;
 import com.example.nlonr.application.ActivityCollector;
 import com.example.nlonr.utils.DataCacheKey;
-
 import java.io.File;
 import java.io.IOException;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    protected final String TAG = this.getClass().getSimpleName();
     //是否显示标题栏
     private boolean isShowTitle = true;
     //是否显示状态栏
     private boolean isShowStatusBar = true;
     //封装Toast对象
     private static Toast toast;
+    private boolean isFirst = true;
     public Context context;
 
     @Override
@@ -43,6 +40,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         context = this;
         //activity管理
+        //设置布局
+        setContentView(initLayout());
         ActivityCollector.addActivity(this);
 
     }
@@ -57,14 +56,17 @@ public abstract class BaseActivity extends AppCompatActivity {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN
                     , WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
+        if(isFirst){
+            //初始化控件
+            initView();
+            //设置数据
+            initData();
+            
+            isFirst = false;
+        }
 
-        //设置布局
-        setContentView(initLayout());
-        //初始化控件
-        initView();
-        //设置数据
-        initData();
     }
+
 
     /**
      * 初始化布局
@@ -79,7 +81,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void initView();
 
     /**
-     *点击事件
+     * 点击事件
      */
     protected abstract void setListeners();
 
@@ -212,9 +214,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //activity管理
+        isFirst = true;
         ActivityCollector.removeActivity(this);
+        Log.d("MyApp", "------ onDestroy ------");
     }
+
 
 
 }

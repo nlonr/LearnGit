@@ -4,6 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
             android:id="@+id/smart_refresh"
             android:layout_width="match_parent"
@@ -12,9 +13,6 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-        <!--        <com.scwang.smartrefresh.header.DeliveryHeader-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content" />-->
 
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
                 android:layout_width="match_parent"
@@ -24,14 +22,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-            <TextView
+
+            <com.youth.banner.Banner
+                    android:id="@+id/banner"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_80"
-                    android:gravity="center"
-                    android:background="@color/blue_light"
-                    android:textColor="@color/decoration_color"
-                    android:textSize="@dimen/sp_16"
-                    android:text="我就是boos要求加上的广告条啦"/>
+                    android:layout_height="@dimen/dp_120" />
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycle"

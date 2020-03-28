@@ -9,6 +9,8 @@ import com.example.nlonr.bean.NewsChannelsBean;
 import java.util.List;
 
 import io.reactivex.Observable;
+import retrofit2.http.Body;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
@@ -24,6 +26,6 @@ public interface Request {
      Observable<BaseArrayBean<List<Goods>>> getGoods(String username, String password);
 
      @POST("release/channel")
-     Observable<NewsChannelsBean> getChannels(String username, String password);
+     Observable<NewsChannelsBean> getChannels(@Body Login vo);
 
 }
