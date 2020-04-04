@@ -4,13 +4,9 @@ import com.example.nlonr.entity.Goods;
 import com.example.nlonr.entity.Login;
 import com.example.nlonr.bean.BaseArrayBean;
 import com.example.nlonr.bean.NewsChannelsBean;
-
-
 import java.util.List;
-
 import io.reactivex.Observable;
 import retrofit2.http.Body;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
