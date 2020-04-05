@@ -48,7 +48,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         getCacheFile("http:\\www.baidu.com\\0152000891000212.jpg", img);
     }
 
-
     @Override
     protected void setListeners() {
         btnLogin.setOnClickListener(new OnSingleClickListener() {
