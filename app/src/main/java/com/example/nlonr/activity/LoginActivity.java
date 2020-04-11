@@ -15,6 +15,10 @@ import com.example.nlonr.entity.Login;
 import com.example.nlonr.myself.ToastCompat;
 import com.example.nlonr.presenter.LoginPresenter;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     private Button btnLogin;
@@ -28,6 +32,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         setShowStatusBar(true);
         super.onCreate(savedInstanceState);
         mPresenter.attachView(this);
+
+        EventBus.getDefault().register(this);
+        EventBus.getDefault().post(new String("她付钱了可以过去"));
     }
 
     @Override
@@ -40,6 +47,19 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         btnLogin = findViewById(R.id.btn_login);
 
         setListeners();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getEventBusMsg(String event) {
+        switch (event) {
+            case "她付钱了可以过去":
+                ToastCompat.showToast(this,"谢谢惠顾",Toast.LENGTH_SHORT);
+                break;
+            default:
+
+                break;
+        }
+
     }
 
     @Override
@@ -82,9 +102,10 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         mPresenter.detachView();
         mPresenter = null;
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
     }
 
 
