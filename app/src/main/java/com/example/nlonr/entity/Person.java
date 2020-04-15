@@ -1,8 +1,10 @@
 package com.example.nlonr.entity;
 
 public class Person implements Cloneable {
-    String name;
-    int age;
+
+    private String name;
+    private int age;
+
     static Person person = new Person();
 
     public Person(String name, int age) {
