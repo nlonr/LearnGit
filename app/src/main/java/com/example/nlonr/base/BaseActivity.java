@@ -2,6 +2,7 @@ package com.example.nlonr.base;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.BitmapFactory;
@@ -67,7 +68,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             initView();
             //设置数据
             initData();
-
+            setListeners();
             isFirst = false;
         }
 
@@ -82,10 +83,10 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     //当前pad是否可以打电话
     public static boolean isPadCanCall(Activity activity) {
-        TelephonyManager telephony = (TelephonyManager)activity.getSystemService(Context.TELEPHONY_SERVICE);
+        TelephonyManager telephony = (TelephonyManager) activity.getSystemService(Context.TELEPHONY_SERVICE);
         if (telephony.getPhoneType() == TelephonyManager.PHONE_TYPE_NONE) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
@@ -148,6 +149,14 @@ public abstract class BaseActivity extends AppCompatActivity {
                 onSingleClick(view);
             }
         }
+    }
+
+    public int getMemory() {
+        ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        assert activityManager != null;
+        int memorySize = activityManager.getMemoryClass();
+        Log.d("MyApp", "占用 " + memorySize + " 内存");
+        return memorySize;
     }
 
     /**

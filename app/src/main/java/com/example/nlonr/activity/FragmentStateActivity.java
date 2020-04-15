@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
 import com.example.nlonr.R;
 import com.example.nlonr.adapter.ViewPagerFragmentStateAdapter;
 import com.example.nlonr.application.ActivityCollector;
@@ -18,10 +19,14 @@ import com.example.nlonr.fragment.ThirdFragment;
 import com.example.nlonr.utils.FragmentUtils;
 import com.example.nlonr.presenter.FragmentStatePresenter;
 import com.google.android.material.tabs.TabLayout;
+import com.lxj.xpopup.XPopup;
+import com.lxj.xpopup.core.BasePopupView;
+
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -37,6 +42,7 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
     private FragmentManager fm;
     private FragmentStatePresenter mPresenter = new FragmentStatePresenter();
     private int show;
+    private BasePopupView popupView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +54,7 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
         super.onCreate(savedInstanceState);
 
         mPresenter.attachView(this);
-}
+    }
 
     @Override
     protected int initLayout() {
@@ -156,29 +162,22 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
             }
         });
 
-
     }
 
-    //    @Override
-//    protected void onResume() {
-//        super.onResume();
-
-
-//        ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-//        assert activityManager != null;
-//        int memorySize = activityManager.getMemoryClass();
-//        Log.d("MyApp", "占用 " + memorySize + " 内存");
-
-//    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
     @Override
     public void showLoading() {
-
+        popupView = new XPopup.Builder(this).asLoading("正在加载中").show();
     }
 
     @Override
     public void hideLoading() {
-
+        popupView.dismiss();
+        popupView.delayDismiss(200);
     }
 
     @Override
@@ -193,11 +192,11 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         mPresenter.detachView();
         mPresenter = null;
         fragments = null;
         ActivityCollector.removeActivity(this);
+        super.onDestroy();
         Log.d("MyApp", "------ onDestroy ------");
     }
 

@@ -36,7 +36,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         mPresenter.attachView(this);
 
         EventBus.getDefault().register(this);
-        EventBus.getDefault().post("她付钱了可以过去");
+        EventBus.getDefault().post(new String("她付钱了可以过去"));
     }
 
     @Override
@@ -52,7 +52,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     protected void initView() {
         btnLogin = findViewById(R.id.btn_login);
 
-        setListeners();
+
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
