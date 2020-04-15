@@ -102,7 +102,6 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
             public void onTabSelected(TabLayout.Tab tab) {
                 View view = tab.getCustomView();
                 show = tab.getPosition();
-                Log.d("MyApp", "mTabLayout : " + show);
                 if (view instanceof TextView) {
                     // 改变 tab 未选择状态下的字体大小
                     ((TextView) view).setTextSize(18);
@@ -136,7 +135,6 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 show = position;
-                Log.d("MyApp", "mViewPager2 : " + position);
                 mTabLayout.setScrollPosition(position, 0, false);
                 Objects.requireNonNull(mTabLayout.getTabAt(position)).select();
                 FragmentUtils.showHideFragment(fm, fragments.get(position));

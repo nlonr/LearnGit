@@ -12,6 +12,7 @@ import com.example.nlonr.R;
 import com.example.nlonr.base.BaseActivity;
 import com.example.nlonr.contract.LoginContract;
 import com.example.nlonr.entity.Login;
+import com.example.nlonr.entity.Person;
 import com.example.nlonr.myself.ToastCompat;
 import com.example.nlonr.presenter.LoginPresenter;
 import com.lxj.xpopup.XPopup;
@@ -21,11 +22,16 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     private Button btnLogin;
     private LoginPresenter mPresenter = new LoginPresenter();
     private BasePopupView popupView;
+    private List<Person> personList = new ArrayList<>();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         //设置是否显示标题栏
@@ -41,9 +47,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @Override
     protected int initLayout() {
-        if(!isPad(this)){
+        if (!isPad(this)) {
             return R.layout.activity_login;
-        }else{
+        } else {
             return R.layout.activity_login;
         }
     }
@@ -59,7 +65,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     public void getEventBusMsg(String event) {
         switch (event) {
             case "她付钱了可以过去":
-                ToastCompat.showToast(this,"谢谢惠顾",Toast.LENGTH_SHORT);
+                ToastCompat.showToast(this, "谢谢惠顾", Toast.LENGTH_SHORT);
                 break;
             default:
 
@@ -70,6 +76,14 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @Override
     protected void initData() {
+
+        for (int i = 0; i < 100; i++) {
+            Person person = Person.getPerson();
+            person.setAge(120);
+            person.setName("袁隆平");
+            personList.add(person);
+        }
+
         ImageView img = new ImageView(this);
         getCacheFile("http:\\www.baidu.com\\0152000891000212.jpg", img);
     }
@@ -86,7 +100,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @Override
     public void showLoading() {
-        popupView =  new XPopup.Builder(this).asLoading("正在加载中").show();
+        popupView = new XPopup.Builder(this).asLoading("正在加载中").show();
     }
 
     @Override
