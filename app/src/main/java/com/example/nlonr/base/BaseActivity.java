@@ -1,10 +1,13 @@
 package com.example.nlonr.base;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Looper;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -12,8 +15,10 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.disklrucache.DiskLruCache;
 import com.bumptech.glide.load.engine.cache.DiskCache;
 import com.bumptech.glide.load.engine.cache.SafeKeyGenerator;
@@ -21,6 +26,7 @@ import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.signature.EmptySignature;
 import com.example.nlonr.application.ActivityCollector;
 import com.example.nlonr.utils.DataCacheKey;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -39,9 +45,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
-        //activity管理
         //设置布局
         setContentView(initLayout());
+        //activity管理
         ActivityCollector.addActivity(this);
 
     }
@@ -56,7 +62,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN
                     , WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
-        if(isFirst){
+        if (isFirst) {
             //初始化控件
             initView();
             //设置数据
@@ -67,6 +73,22 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
+    //如果为true则表示当前设备为pad，否则为手机
+    public static boolean isPad(Context context) {
+        return (context.getResources().getConfiguration().screenLayout
+                & Configuration.SCREENLAYOUT_SIZE_MASK)
+                >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+    }
+
+    //当前pad是否可以打电话
+    public static boolean isPadCanCall(Activity activity) {
+        TelephonyManager telephony = (TelephonyManager)activity.getSystemService(Context.TELEPHONY_SERVICE);
+        if (telephony.getPhoneType() == TelephonyManager.PHONE_TYPE_NONE) {
+            return true;
+        }else {
+            return false;
+        }
+    }
 
     /**
      * 初始化布局
@@ -218,7 +240,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         ActivityCollector.removeActivity(this);
         Log.d("MyApp", "------ onDestroy ------");
     }
-
 
 
 }

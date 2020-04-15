@@ -14,6 +14,8 @@ import com.example.nlonr.contract.LoginContract;
 import com.example.nlonr.entity.Login;
 import com.example.nlonr.myself.ToastCompat;
 import com.example.nlonr.presenter.LoginPresenter;
+import com.lxj.xpopup.XPopup;
+import com.lxj.xpopup.core.BasePopupView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -23,7 +25,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     private Button btnLogin;
     private LoginPresenter mPresenter = new LoginPresenter();
-
+    private BasePopupView popupView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         //设置是否显示标题栏
@@ -34,12 +36,16 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         mPresenter.attachView(this);
 
         EventBus.getDefault().register(this);
-        EventBus.getDefault().post(new String("她付钱了可以过去"));
+        EventBus.getDefault().post("她付钱了可以过去");
     }
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_login;
+        if(!isPad(this)){
+            return R.layout.activity_login;
+        }else{
+            return R.layout.activity_login;
+        }
     }
 
     @Override
@@ -80,12 +86,13 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @Override
     public void showLoading() {
-
+        popupView =  new XPopup.Builder(this).asLoading("正在加载中").show();
     }
 
     @Override
     public void hideLoading() {
-
+        popupView.dismiss();
+        popupView.delayDismiss(200);
     }
 
     @Override

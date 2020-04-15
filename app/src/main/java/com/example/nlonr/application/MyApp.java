@@ -16,7 +16,7 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.example.nlonr.mylibrary.base.NetworkApi;
 
 public class MyApp extends Application {
-
+    public static String Update_URL = "https://www.baidu.com";
     private static MyApp mInstance = null;
 
     static {
