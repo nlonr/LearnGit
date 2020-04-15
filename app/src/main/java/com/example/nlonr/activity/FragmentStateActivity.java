@@ -1,11 +1,9 @@
 package com.example.nlonr.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
 import com.example.nlonr.R;
 import com.example.nlonr.adapter.ViewPagerFragmentStateAdapter;
 import com.example.nlonr.application.ActivityCollector;
@@ -21,12 +19,10 @@ import com.example.nlonr.presenter.FragmentStatePresenter;
 import com.google.android.material.tabs.TabLayout;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.core.BasePopupView;
-
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -100,6 +96,8 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
     private void initOthers() {
         // 添加页签选中监听
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
+
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 View view = tab.getCustomView();
@@ -133,23 +131,6 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
         });
         // 注册页面变化的回调接口
         mViewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
-//                Log.d("MyApp", "这是什么值：" + position + "   " + positionOffset + "   " + positionOffsetPixels);
-//                int i = fragments.size() - 1;
-//                if (positionOffsetPixels > 400) {
-//                    onPageSelected(position + 1);
-//                }
-//
-//                if (position == i) {
-//                    i--;
-//                    onPageSelected(position - 1);
-//                    if (i == 0) {
-//                        return;
-//                    }
-//                }
-//            }
 
             @Override
             public void onPageSelected(int position) {
