@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/scrollerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+
+    <!--设置app:layout_isConsecutive="false"使父布局不拦截滑动事件-->
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_isConsecutive="false">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="下面的红色区域是个RecyclerView，它在自己的范围内单独滑动。"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_isSticky="true" />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView1"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="30dp"
+                android:background="@android:color/holo_red_dark"/>
+
+    </LinearLayout>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="下面的是个NestedScrollView，它在自己的范围内单独滑动。"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:layout_isConsecutive="false">
+
+    </androidx.core.widget.NestedScrollView>
+
+</com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout>

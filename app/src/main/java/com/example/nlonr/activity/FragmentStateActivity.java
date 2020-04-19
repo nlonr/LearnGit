@@ -48,8 +48,8 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
 //        setShowStatusBar(true);
 
         super.onCreate(savedInstanceState);
-
         mPresenter.attachView(this);
+
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.example.nlonr.application;
 
 import android.app.Application;
 
-import com.bumptech.glide.BuildConfig;
+import com.example.nlonr.BuildConfig;
 import com.example.nlonr.mylibrary.base.INetworkRequiredInfo;
 
 public class MyNetWork implements INetworkRequiredInfo {
