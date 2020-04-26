@@ -6,15 +6,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-
 import androidx.core.content.FileProvider;
-
 import com.example.nlonr.BuildConfig;
 import com.example.nlonr.R;
 import com.example.nlonr.application.MyApp;
-
 import java.io.File;
-
 import static android.content.Context.DOWNLOAD_SERVICE;
 
 public class Myself {
