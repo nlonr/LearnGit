@@ -41,12 +41,12 @@ public class Person implements Cloneable {
         return null;
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Person{" +
+//                "name='" + name + '\'' +
+//                ", age=" + age +
+//                '}';
+//    }
 
 }

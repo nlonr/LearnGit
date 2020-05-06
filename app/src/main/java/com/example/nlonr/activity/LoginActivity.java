@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.example.nlonr.R;
+import com.example.nlonr.application.MyApp;
 import com.example.nlonr.base.BaseActivity;
 import com.example.nlonr.contract.LoginContract;
 import com.example.nlonr.entity.Login;
@@ -24,6 +25,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LoginActivity extends BaseActivity implements LoginContract.View {
 
@@ -58,7 +60,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     protected void initView() {
         btnLogin = findViewById(R.id.btn_login);
 
-
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -67,9 +68,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             case "她付钱了可以过去":
                 ToastCompat.showToast(this, "谢谢惠顾", Toast.LENGTH_SHORT);
                 break;
-            default:
 
-                break;
         }
 
     }

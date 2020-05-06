@@ -15,11 +15,32 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
 import com.example.nlonr.mylibrary.base.NetworkApi;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MyApp extends Application {
     public static String Update_URL = "https://www.baidu.com";
     private static MyApp mInstance = null;
+    public static Map<String,String> map;
 
-    static {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mInstance = this;
+        NetworkApi.init(new MyNetWork(mInstance));
+        setSmartRL();
+    }
+
+    public static Map<String,String> getCacheMap(){
+        if(map==null){
+            map = new HashMap<>();
+        }
+
+        return map;
+    }
+
+    private void setSmartRL(){
         //设置全局的Header构建器
         SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
             @Override
@@ -36,13 +57,6 @@ public class MyApp extends Application {
                 return new ClassicsFooter(context).setDrawableSize(20);
             }
         });
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        mInstance = this;
-        NetworkApi.init(new MyNetWork(mInstance));
     }
 
     public static MyApp getInstance() {

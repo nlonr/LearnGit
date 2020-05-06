@@ -26,10 +26,13 @@ import com.bumptech.glide.load.engine.cache.SafeKeyGenerator;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.signature.EmptySignature;
 import com.example.nlonr.application.ActivityCollector;
+import com.example.nlonr.application.MyApp;
 import com.example.nlonr.utils.DataCacheKey;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -41,6 +44,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private static Toast toast;
     private boolean isFirst = true;
     public Context context;
+    public Map<String,String> map;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +54,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(initLayout());
         //activity管理
         ActivityCollector.addActivity(this);
+
+        map = MyApp.getCacheMap();
+        map.clear();
 
     }
 
@@ -112,6 +119,8 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 设置数据
      */
     protected abstract void initData();
+
+
 
     /**
      * 设置是否显示标题栏
@@ -246,6 +255,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         isFirst = true;
+        map = null;
         ActivityCollector.removeActivity(this);
         Log.d("MyApp", "------ onDestroy ------");
     }
