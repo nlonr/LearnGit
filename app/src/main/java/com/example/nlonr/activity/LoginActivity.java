@@ -5,11 +5,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
-
 import com.example.nlonr.R;
-import com.example.nlonr.application.MyApp;
 import com.example.nlonr.base.BaseActivity;
 import com.example.nlonr.contract.LoginContract;
 import com.example.nlonr.entity.Login;
@@ -18,14 +15,11 @@ import com.example.nlonr.myself.ToastCompat;
 import com.example.nlonr.presenter.LoginPresenter;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.core.BasePopupView;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class LoginActivity extends BaseActivity implements LoginContract.View {
 

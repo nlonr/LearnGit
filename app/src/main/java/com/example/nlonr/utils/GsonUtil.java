@@ -87,7 +87,6 @@ public class GsonUtil {
         return list;
     }
 
-
     /**
      * 转成list中有map的
      *
@@ -118,8 +117,6 @@ public class GsonUtil {
         }
         return map;
     }
-
-    // -------
 
     /**
      * 按章节点得到相应的内容

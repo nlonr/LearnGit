@@ -120,8 +120,6 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected abstract void initData();
 
-
-
     /**
      * 设置是否显示标题栏
      *
@@ -229,7 +227,6 @@ public abstract class BaseActivity extends AppCompatActivity {
             Looper.loop();
         }
     }
-
 
     /**
      * 隐藏软键盘
