@@ -4,10 +4,13 @@ import android.content.res.Resources;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.nlonr.R;
 import com.example.nlonr.adapter.FirstAdapter;
 import com.example.nlonr.entity.Goods;
@@ -18,16 +21,18 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class FirstFragment extends BaseFragment {
+public class FirstFragment extends BaseFragment implements View.OnClickListener {
 
     private SmartRefreshLayout smartRefresh;
     private RecyclerView recycleV;
     private Handler handler = new Handler();
     private List<Goods> list = new ArrayList<>();
+    private TextView tvLeader;
 
     @Override
     protected int setLayoutId() {
@@ -36,7 +41,12 @@ public class FirstFragment extends BaseFragment {
 
     @Override
     protected void init() {
-        Log.d("MyApp", "这是FirstFragment ---> " );
+        Log.d("MyApp", "这是FirstFragment ---> ");
+        if (getArguments() != null) {
+            getArguments().get("asd");
+        }
+        tvLeader = (TextView) findViewById(R.id.first_fragment_leader);
+
         smartRefresh = (SmartRefreshLayout) findViewById(R.id.smart_refresh);
         smartRefresh.setReboundDuration(600);
         recycleV = (RecyclerView) findViewById(R.id.recycle);
@@ -67,6 +77,17 @@ public class FirstFragment extends BaseFragment {
         list.add(g3);
         list.add(g4);
 
+    }
+
+    @Override
+    protected void initEvent() {
+        tvLeader.setOnClickListener((View.OnClickListener) mContext);
+    }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
     }
 
     private void smartRefresh() {
@@ -123,6 +144,17 @@ public class FirstFragment extends BaseFragment {
         list.add(g7);
         Objects.requireNonNull(recycleV.getAdapter()).notifyDataSetChanged();
 
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        list = null;
+        super.onDestroyView();
     }
 
 

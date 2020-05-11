@@ -87,6 +87,10 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
         fragments.add(third);
         fragments.add(forth);
 
+        Bundle bundle = new Bundle();
+        bundle.putString("asd","这是Activity传来的值");
+        first.setArguments(bundle);
+
         mAdapter = new ViewPagerFragmentStateAdapter(this, fragments);
         mViewPager2.setAdapter(mAdapter);
 

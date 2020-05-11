@@ -18,12 +18,6 @@ public abstract class BaseLazyLoadFragment extends BaseFragment {
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        isPrepare = true;
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         if (isPrepare) {
@@ -48,6 +42,12 @@ public abstract class BaseLazyLoadFragment extends BaseFragment {
         if (isPrepare && getUserVisibleHint()) {
             loadData();
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        isPrepare = true;
     }
 
 }

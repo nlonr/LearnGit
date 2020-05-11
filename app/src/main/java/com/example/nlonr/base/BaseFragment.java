@@ -1,5 +1,6 @@
 package com.example.nlonr.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +14,18 @@ public abstract class BaseFragment extends Fragment {
      * 布局id
      */
     private View contentView;
+    public Context mContext;
 
     /**
      * 是否启用懒加载，此属性仅对BaseLazyLoadFragment有效
      * */
-    private boolean isLazyLoad;
+    private boolean isFirst = true;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mContext = getActivity();
+    }
 
     @Nullable
     @Override
@@ -34,12 +42,14 @@ public abstract class BaseFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        // 如果不是懒加载模式，创建就加载数据
-        if (!isLazyLoad){
+    public void onResume() {
+        super.onResume();
+        if (isFirst) {
             loadData();
+            initEvent();
+            isFirst = true;
         }
+
     }
 
     /**
@@ -64,12 +74,16 @@ public abstract class BaseFragment extends Fragment {
      */
      protected abstract void loadData();
 
-
     /**
-     * 是否启用懒加载，此方法仅对BaseLazyLoadFragment有效
-     * */
-    public void setLazyLoad(boolean lazyLoad) {
-        isLazyLoad = lazyLoad;
+     * 点击事件
+     */
+    protected abstract void initEvent();
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        isFirst = true;
     }
+
 
 }

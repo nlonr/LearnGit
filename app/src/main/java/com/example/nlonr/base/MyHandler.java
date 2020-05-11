@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.lang.ref.WeakReference;
 
 public class MyHandler extends Handler {
@@ -18,7 +20,7 @@ public class MyHandler extends Handler {
         final Activity activity = mWeakReference.get();
         if (activity != null) {
             if (msg.what == 1) {
-
+//                EventBus.getDefault().post(new String("她付钱了可以过去"));
             }
         }
     }

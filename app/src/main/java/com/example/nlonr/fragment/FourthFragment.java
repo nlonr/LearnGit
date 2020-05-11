@@ -68,6 +68,11 @@ public class FourthFragment extends BaseFragment  {
 
     }
 
+    @Override
+    protected void initEvent() {
+
+    }
+
     private void smartRefresh() {
         // 只加载一次数据，避免界面切换的时候，加载数据多次
         smartRefresh.setOnRefreshListener(new OnRefreshListener() {

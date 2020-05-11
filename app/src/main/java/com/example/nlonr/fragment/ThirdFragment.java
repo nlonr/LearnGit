@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.example.nlonr.R;
 import com.example.nlonr.adapter.FirstAdapter;
+import com.example.nlonr.base.BaseFragment;
 import com.example.nlonr.entity.Goods;
-import com.example.nlonr.base.BaseLazyLoadFragment;
 import com.example.nlonr.myself.MyDecoration;
 import com.example.nlonr.myself.ToastCompat;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ThirdFragment extends BaseLazyLoadFragment  {
+public class ThirdFragment extends BaseFragment {
 
     private SmartRefreshLayout smartRefresh;
     private RecyclerView recycleV;
@@ -58,6 +58,11 @@ public class ThirdFragment extends BaseLazyLoadFragment  {
         list.add(g2);
         list.add(g3);
         list.add(g4);
+
+    }
+
+    @Override
+    protected void initEvent() {
 
     }
 

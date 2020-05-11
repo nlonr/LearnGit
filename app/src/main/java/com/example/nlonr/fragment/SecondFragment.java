@@ -4,16 +4,14 @@ import android.content.Context;
 import android.os.Handler;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.nlonr.R;
 import com.example.nlonr.adapter.FirstAdapter;
+import com.example.nlonr.base.BaseFragment;
 import com.example.nlonr.entity.Goods;
-import com.example.nlonr.base.BaseLazyLoadFragment;
 import com.example.nlonr.myself.MyDecoration;
 import com.example.nlonr.myself.ToastCompat;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -25,12 +23,11 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class SecondFragment extends BaseLazyLoadFragment implements OnBannerListener {
+public class SecondFragment extends BaseFragment implements OnBannerListener {
 
     private SmartRefreshLayout smartRefresh;
     private RecyclerView recycleV;
@@ -123,6 +120,11 @@ public class SecondFragment extends BaseLazyLoadFragment implements OnBannerList
         list.add(g2);
         list.add(g3);
         list.add(g4);
+
+    }
+
+    @Override
+    protected void initEvent() {
 
     }
 

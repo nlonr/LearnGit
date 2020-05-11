@@ -25,6 +25,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
             <TextView
+                    android:id="@+id/first_fragment_leader"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_80"
                     android:gravity="center"
