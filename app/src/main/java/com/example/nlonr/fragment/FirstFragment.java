@@ -1,16 +1,13 @@
 package com.example.nlonr.fragment;
 
-import android.content.res.Resources;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.nlonr.R;
 import com.example.nlonr.adapter.FirstAdapter;
 import com.example.nlonr.entity.Goods;
@@ -21,7 +18,6 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -156,7 +152,6 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
         list = null;
         super.onDestroyView();
     }
-
 
 }
 

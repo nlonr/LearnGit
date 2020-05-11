@@ -14,10 +14,11 @@ public abstract class BaseFragment extends Fragment {
      * 布局id
      */
     private View contentView;
+
     public Context mContext;
 
     /**
-     * 是否启用懒加载，此属性仅对BaseLazyLoadFragment有效
+     * 是否启用懒加载，此属性仅对LazyLoadFragment有效
      * */
     private boolean isFirst = true;
 
@@ -47,7 +48,7 @@ public abstract class BaseFragment extends Fragment {
         if (isFirst) {
             loadData();
             initEvent();
-            isFirst = true;
+            isFirst = false;
         }
 
     }
