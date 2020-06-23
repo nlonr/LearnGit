@@ -1,11 +1,14 @@
 package com.example.nlonr.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
+
 import com.example.nlonr.R;
 import com.example.nlonr.base.BaseActivity;
 import com.example.nlonr.contract.LoginContract;
@@ -15,9 +18,11 @@ import com.example.nlonr.myself.ToastCompat;
 import com.example.nlonr.presenter.LoginPresenter;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.core.BasePopupView;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +44,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
         EventBus.getDefault().register(this);
         EventBus.getDefault().post(new String("她付钱了可以过去"));
+
+
+
     }
 
     @Override
@@ -48,6 +56,13 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         } else {
             return R.layout.activity_login;
         }
+    }
+
+    @Override
+    public void onTrimMemory(int level) {
+
+
+        super.onTrimMemory(level);
     }
 
     @Override

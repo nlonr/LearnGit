@@ -13,7 +13,7 @@ public abstract class BaseLazyLoadFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setLazyLoad(true);
+//        setLazyLoad(true);
         isPrepare = true;
     }
 

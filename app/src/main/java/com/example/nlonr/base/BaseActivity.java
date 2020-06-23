@@ -25,6 +25,7 @@ import com.bumptech.glide.load.engine.cache.DiskCache;
 import com.bumptech.glide.load.engine.cache.SafeKeyGenerator;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.signature.EmptySignature;
+import com.example.nlonr.activity.LoginActivity;
 import com.example.nlonr.application.ActivityCollector;
 import com.example.nlonr.application.MyApp;
 import com.example.nlonr.utils.DataCacheKey;
@@ -81,8 +82,13 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+    }
+
     //如果为true则表示当前设备为pad，否则为手机
-    public static boolean isPad(Context context) {
+    public static boolean isPad(LoginActivity context) {
         return (context.getResources().getConfiguration().screenLayout
                 & Configuration.SCREENLAYOUT_SIZE_MASK)
                 >= Configuration.SCREENLAYOUT_SIZE_LARGE;

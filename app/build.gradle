@@ -18,6 +18,12 @@ android {
         disable 'GoogleAppIndexingWarning'
     }
 
+//    greendao {
+//        schemaVersion 1
+////        daoPackage 'com.zty.greendao.gen'
+//        targetGenDir 'src/main/java'
+//    }
+
     buildTypes {
 
 
@@ -40,7 +46,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.core:core-ktx:1.3.0'
     implementation 'com.lxj:xpopup:1.8.17'
     //eventBus
     implementation 'org.greenrobot:eventbus:3.1.1'
@@ -60,6 +66,9 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.github.donkingliang:ConsecutiveScroller:2.3.0'
+//    //greendao依赖
+//    implementation 'org.greenrobot:greendao:3.0.1'
+//    implementation 'org.greenrobot:greendao-generator:3.0.0'
 
     androidTestImplementation 'androidx.test:runner:1.2.0'
     testImplementation 'junit:junit:4.12'

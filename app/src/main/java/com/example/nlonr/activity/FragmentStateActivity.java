@@ -1,6 +1,9 @@
 package com.example.nlonr.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -23,6 +26,8 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
+
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -39,6 +44,7 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
     private FragmentStatePresenter mPresenter = new FragmentStatePresenter();
     private int show;
     private BasePopupView popupView;
+    private final MyHandler mHandler = new MyHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,6 +169,28 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
         popupView.delayDismiss(200);
     }
 
+
+
+    public static class MyHandler extends Handler{
+        private final WeakReference<Activity> mActivity;
+
+        public MyHandler(Activity activity) {
+            mActivity = new WeakReference<Activity>(activity);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            Activity activity = mActivity.get();
+            if (activity != null) {
+                switch (msg.what){
+                    case 111:
+                       String name = (String) msg.obj;
+                        break;
+                }
+            }
+        }
+    }
+
     @Override
     public void onError(Throwable throwable) {
 
@@ -170,7 +198,11 @@ public class FragmentStateActivity extends BaseActivity implements FragmentContr
 
     @Override
     public void onSuccess(List<Goods> bean) {
+        Message msg = Message.obtain();
+        msg.what = 111;
+        msg.obj = "12324";
 
+        mHandler.sendMessage(msg);
     }
 
     @Override

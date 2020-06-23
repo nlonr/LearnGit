@@ -8,24 +8,24 @@ public class BaseArrayBean<T> {
      * msg : 获取成功
      * result : [] 数组
      */
-    private int errorCode;
-    private String errorMsg;
+    private int code;
+    private String msg;
     private List<T> result;
 
-    public int getErrorCode() {
-        return errorCode;
+    public int getCode() {
+        return code;
     }
 
-    public void setErrorCode(int errorCode) {
-        this.errorCode = errorCode;
+    public void setCode(int code) {
+        this.code = code;
     }
 
-    public String getErrorMsg() {
-        return errorMsg;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public List<T> getResult() {

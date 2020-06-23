@@ -1,2 +1,4 @@
 include ':app', ':mylibrary'
 rootProject.name='MyApp'
+include ':lib'
+include ':libr'
